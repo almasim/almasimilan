@@ -1,0 +1,79 @@
+
+Alaplapok
+
+MSI B450 TOMAHAWK MAX  1 : 
+ASUS ROG STRIX X570-F GAMING 2:
+MSI B450M-A PRO MAX 3:
+MSI MAG B550 TOMAHAWK 4:
+ASUS PRIME X570-P 5:
+ASUS ROG STRIX B550-F GAMING (WI-FI) alaplap 35:
+ASUS TUF GAMING Z490-PLUS alaplap (90MB1340-M0EAY0) 36:
+MSI B450M MORTAR MAX alaplap 37:
+MSI MPG Z490 GAMING PLUS alaplap 38:
+Gigabyte H410M H alaplap 39:
+ASUS PRIME B460M-K alaplap 40:
+ASUS ROG STRIX Z390-F GAMING alaplap 41:
+
+;
+
+Monitorok
+
+34" AOC CU34G2X/BK Gaming 6:
+23,8" Dell P2419H Professional 7:
+24" Samsung S24R350 8:
+27" BenQ PD2700U 9:
+25" AOC G2590FX 10:
+34" Dell AW3418DW Alienware 11:
+
+;
+
+Videokártya 
+
+GIGABYTE Videokártya PCI-Ex16x nVIDIA RTX 2060 6GB DDR6 OC 12:
+Sapphire Radeon RX 550 Pulse 4GB GDDR5 videókártya 13:
+MSI nVIDIA GT 710 2GB DDR3 Passzív videókártya (GT 710 2GD3H LP) 14:
+Gigabyte PCIe NVIDIA RTX 2070 8GB GDDR6 - GeForce RTX 2070 SUPER WINDFORCE OC 3X 8G videókártya 15:
+Gigabyte PCIe NVIDIA GTX 1660 6GB GDDR5 - GeForce GTX 1660 OC 6G gamer videókártya 16:
+ASUS Videokártya PCI-Ex16x nVIDIA GT 1030 2GB DDR5 OC  17:
+Gigabyte nVidia GTX 1050 Ti OC 4GB GDDR5 videókártya - GV-N105TOC-4GD 18:
+
+;
+
+Processzor
+
+AMD Ryzen 5 3600 Hexa-Core 3.6GHz AM4 Processzor 19:
+AMD Ryzen 5 3600x Hexa-Core 3.8GHz AM4 Processzor 20:
+Intel Core i5-9400F Hexa-Cores 2.90GHz LGA1151 Processzor 21:
+AMD Ryzen 5 2600 Hexa-Core 3.4GHz AM4 (YD2600BBAFBOX) Processzor 22:
+AMD Ryzen 7 3700x Octa-Core 3.6GHz AM4 Processzor 23:
+Intel Core i9-9900K Octa-Core 3.6GHz LGA1151 Processzor 24:
+
+;
+
+Memoriák
+
+G.SKILL Aegis 16GB (2x8GB) DDR4 3200MHz F4-3200C16D-16GIS 25:
+Kingston HyperX Predator 16GB (2x8GB) DDR4 3200MHz HX432C16PB3K2/16 26:
+G.SKILL Aegis 16GB (2x8GB) DDR4 3000MHz F4-3000C16D-16GISB 27:
+G.SKILL Ripjaws V 16GB (2x8GB) DDR4 3200MHz F4-3200C16D-16GVKB 28:
+Kingston HyperX FURY 32GB (2x16GB) DDR4 3200MHz HX432C16FB3K2/32 29:
+Corsair VENGEANCE LPX 16GB (2x8GB) DDR4 3200MHz CMK16GX4M2B3200C16/R/W 30:
+Kingston HyperX FURY 16GB (2x8GB) DDR4 3200MHz HX432C16FB3K2/16  31:
+Kingston HyperX FURY 8GB DDR4 2666MHz HX426C16FB3/8  32:
+Kingston HyperX FURY 16GB (2x8GB) DDR4 2666MHz HX426C16FB3K2/16  33:
+Kingston HyperX Predator RGB 16GB (2x8GB) DDR4 3200MHz HX432C16PB3AK2/16  34:
+
+;
+
+Gépházak
+
+Thermaltake View 21 Tempered Glass Edition számítógépház, Tápegység nélkül, Fekete 42:
+AIO Magnum Window számítógépház, RGB Fekete 43:
+AIO Chroma számítógépház, Edzett üveg Fekete 44:
+Kolink Observatory RGB ATX edzett üveg fehér számítógépház 45:
+Cooler Master Micro MasterBox Q300L számítógépház 46:
+Floston Dark Brushed RGB Számítógépház, Middle Tower, ATX, Tápegység nélkül, Fekete 47:
+Redragon Sidewipe Black számítógépház, ATX Mid Tower, Tápegység nélküli 48:
+AIO Lumina Gamer számítógépház, Edzett üveg Feket 49:
+nJoy Oryn Számítógépház, Middle Tower, ATX, táp nélkül, Fekete 50:
+
