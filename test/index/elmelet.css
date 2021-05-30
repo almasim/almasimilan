@@ -1,0 +1,157 @@
+h1 {
+    background-color: rgb(233, 204, 245);
+}
+
+.td_menu {
+    padding-right: 5px;
+    width: 25%;
+    /* text-align: left; */
+}
+
+.td_middle {
+    width: 5px;
+    background-color: #eaeeda;
+}
+
+.td_text {
+    text-align: justify;
+    /* width: 75%; */
+    /* it does not seem to work */
+    min-width: 200px;
+}
+
+.div_menu {
+    height: 800px;
+    overflow: auto;
+    /* puts the scrollbar to the left */
+    direction: rtl;
+}
+
+.div_text {
+    height: 800px;
+    overflow: auto;
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+table p,
+table li {
+    font-size: 16px;
+}
+
+#listHeader {
+    padding-left: 5px;
+    direction: ltr;
+}
+
+ul {
+    padding-left: 20px;
+    /* changes the direction back, overrides the scrollbar direction setting in the div_menu */
+    direction: ltr;
+}
+
+.collapsed {
+    list-style: url("../img/menu-collapsed.gif");
+    font-variant: small-caps;
+    font-weight: bold;
+}
+
+.leaf {
+    list-style: url("../img/menu-leaf.gif");
+    font-variant: normal;
+    font-weight: normal;
+}
+
+.collapsed a {
+    transition: 2s;
+}
+
+.collapsed a:hover {
+    color: blue;
+    text-decoration: none;
+    background-color: rgb(210, 210, 250);
+    border-radius: 5px;
+}
+
+.leaf a {
+    transition: 2s;
+}
+
+.leaf a:hover {
+    color: red;
+    text-decoration: underline;
+    background-color: rgb(253, 240, 220);
+    border-radius: 5px;
+}
+
+h2.chaptertitle {
+    padding: 0.25em;
+    border-color: #fc9643;
+    border-width: 1px 0 1px 0;
+    border-style: solid;
+    background-color: #eaf098;
+    font-size: 2em;
+    font-variant: small-caps;
+    font-weight: bold;
+    margin-top: 1em;
+    /* text-align: left; */
+    letter-spacing: 0.1em;
+    color: #603355;
+}
+
+img {
+    max-width: 100%;
+}
+
+@media only screen and (max-height: 700px) {
+    /* For tablets: max-width: 1000px  */
+    .div_menu,
+    .div_text {
+        height: 600px;
+    }
+}
+
+@media only screen and (max-height: 600px) {
+    /* For mobile phones: max-width: 600px */
+    .div_menu,
+    .div_text {
+        height: 550px;
+    }
+    h1 {
+        display: none;
+    }
+}
+
+@media only screen and (max-height: 500px) {
+    .div_menu,
+    .div_text {
+        height: 450px;
+    }
+}
+
+@media only screen and (max-height: 400px) {
+    .div_menu,
+    .div_text {
+        height: 350px;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    /* For tablets: max-width: 1000px  */
+    h2.chaptertitle {
+        font-size: 1.7em;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    /* For mobile phones: max-width: 600px */
+    h2.chaptertitle {
+        font-size: 1.5em;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    h2.chaptertitle {
+        font-size: 1.3em;
+    }
+}

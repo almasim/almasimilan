@@ -1,0 +1,139 @@
+body {
+    font-size: 100%;
+    color: #333;
+    font-family: "segoe ui",verdana,arial;
+    
+}
+#wrapper {
+    width: 1000px;
+    padding: 10px;
+    margin: 0 auto;
+    min-height: 350px;
+}
+a { color: #2E9AF0; text-decoration: underline }
+a:hover { color: #2288DA; text-decoration: none }
+small { color: #A0A3A7 }
+hr {
+    margin-bottom: 20px;
+    border: 0;
+    border-top: 1px solid #c7c7c7;
+}
+
+/* Inputok */
+input,select { font-size: 95% }
+input:focus { outline: none }
+input[type="text"], input[type="password"], input[type="email"], input[type="number"], select {
+    min-width: 250px;
+    padding: 7px;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+input[type="button"]{
+    padding: 8px 20px;
+    background: #428bca;
+    border: #357ebd;
+    color: #fff;
+    border-radius: 3px;
+    cursor: pointer;
+}
+input[type="button"]:hover { background: #387CB6 }
+input[type="button"]:hover{
+}
+
+/**********/
+/* Loader */
+/**********/
+.loading-overlay { width: 100%; height: 100%; background: #000; opacity: .8; position: fixed; left:0; top:0; z-index: 1000; display: none }
+.loading {
+    width: 250px;
+    height: 120px;
+    background: #fff;
+    position: absolute;
+    margin: 0 auto;
+    z-index: 1001;
+    left: 50%;
+    margin-left: -125px;
+    top: 50%;
+    margin-top: -120px;
+    display: none;
+    border-radius: 5px;
+}
+.loading div { text-align: center; margin: 20px }
+.loading img { margin: 0 auto; display: block }
+/*********/
+/* Login */
+/*********/
+
+h1.login { color: #444; margin: 0 }
+form.login, form.reg, form.lostpw {
+    width: 440px;
+    float: right;
+    text-align: center;
+    margin-top: 50px;
+}
+div.login {
+    width: 700px;
+    margin: 0 auto;
+}
+.img-lock {
+    float: left;
+    background: url(lock.png);
+    width: 256px;
+    height: 256px;
+}
+form.login input[type="text"] {
+    border-bottom: none;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    padding: 11px 7px;
+}
+form.login input[type="password"]{
+    margin-top: -3px;
+    border-top: none;
+    border-bottom: none;
+    border-radius: 0;
+    padding: 11px 7px;
+}
+form.login input[type="button"]{
+    margin-top: -2px;
+    border-top: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    width: 266px;
+    padding: 11px 7px;
+}
+
+/*******/
+/* Reg */
+/*******/
+form.reg, form.lostpw { display: none }
+
+table#admin {
+    width: 500px;
+    margin: 0 auto;
+}
+
+/* ALERT JELZÉSEK */
+.csik {
+    display: block;
+    padding: 10px 20px 10px 24px;
+}
+.csik-info {
+    background: #CFE8FF;
+    border: 1px solid #7BA9EC;
+    border-left-width: 4px;
+    color: #579AE4;
+}
+.csik-veszely {
+    background: #EBC6C6;
+    border: 1px solid #D28888;
+    border-left-width: 4px;
+    color: #A44242;
+}
+.csik-jo {
+    background: #e3ebc6;
+    border: 1px solid #c2d288;
+    border-left-width: 4px;
+    color: #8fa442;
+}

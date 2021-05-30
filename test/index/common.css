@@ -1,0 +1,55 @@
+h4 {
+    padding: 0.25em;
+    border-color: #d9ec2b;
+    border-width: 1px 0 1px 0;
+    border-style: solid;
+    background-color: #f5c587;
+    font-size: 1.4em;
+    margin-top: 1.0em;
+}
+
+@media only screen and (max-width: 1000px) {
+    h1 {
+        font-size: 32px;
+    }
+    #nav8,
+    #nav7 {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    /* For tablets: max-width: 1000px  */
+    h1 {
+        font-size: 30px;
+    }
+    h4 {
+        font-size: 1.3em;
+    }
+    #nav6,
+    #nav5 {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    /* For mobile phones: max-width: 600px */
+    h1 {
+        font-size: 28px;
+    }
+    h4 {
+        font-size: 1.2em;
+    }
+    #nav4 {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 530px) {
+    h1 {
+        font-size: 24px;
+    }
+    h4 {
+        font-size: 1.0em;
+    }
+}

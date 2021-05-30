@@ -1,0 +1,36 @@
+@media only screen and
+(max-width: 1000px){
+    #wrapper { width: 700px }
+}
+@media only screen and
+(max-width: 700px) and
+(min-width: 300px){
+    #wrapper { width: 95% }
+    .img-lock { display: none }
+    form.login, form.reg, form.lostpw, div.login { width: 100%; float: none }
+    form.login, form.reg, form.lostpw { margin-top: 20px }
+    h1.login { text-align: center }
+    .login_err { font-size: 14px }
+    .login_err .csik { padding-left: 10px }
+    table#admin { width: 300px; font-size: 12px }
+    table#admin td.inputs input, table#admin td.inputs select { min-width: 100%; width: 100% }
+}
+@media only screen and
+(max-width: 300px) {
+    #wrapper { width: 90% }
+    h1.login { font-size: 150% }
+    .img-lock { display: none }
+    form.login, form.reg, form.lostpw, div.login { width: 100%; float: none }
+    form.login, form.reg, form.lostpw { margin-top: 20px }
+    h1.login { text-align: center }
+    
+    .login_err { font-size: 12px }
+    .login_err .csik { padding-left: 10px }
+    
+    form.login input[type="text"], form.reg input[type="text"], form.lostpw input[type="text"], form.login input[type="password"],
+    form.reg input[type="password"], form.lostpw input[type="password"], form.reg input[type="email"], form.lostpw input[type="email"]
+    { width: 170px !important; min-width: 170px !important }
+    
+    form.login input[type="button"], form.reg input[type="button"], form.lostpw input[type="button"] { width: 186px !important; min-width: 186px !important }
+    table#admin { width: 200px; font-size: 10px }
+    table#admin td.inputs input, table#admin td.inputs select { min-width: 100%; width: 100% }

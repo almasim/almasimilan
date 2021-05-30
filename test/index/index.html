@@ -1,0 +1,2921 @@
+
+
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Szoftvertesztelés elmélet</title>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>-->
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="elmelet.css">
+    <link rel="stylesheet" href="common.css">
+    <!-- <script src="jquery.min.js"></script> -->
+    <!-- <script src="bootstrap.min.js"></script> -->
+    <!-- <script type="text/javascript" src="oldal_tetejere_nyil.js"></script> -->
+
+</head>
+
+<body>
+    <div class="container" id="oldal_teteje">
+        <p>&nbsp;Miskolci SZC Kandó Kálmán Informatikai Technikum</p>
+        <h1>&nbsp;Szoftvertesztelés - 1/13.C 2. csoport</h1>
+        <hr>
+
+        <table>
+            <tr>
+                <td class="td_menu">
+                    <div class="div_menu">
+                        <div id='listHeader'>Szoftvertesztelés elmélet:</div>
+                        <ul>
+                            <li class='collapsed'><a href="#chapter1">1. Bevezetés</a>
+                                <ul>
+                                    <li class='leaf'><a href="#mi_a_szoftverteszteles">Mi a
+                                            szoftvertesztelés?</a></li>
+                                    <li class='leaf'><a href="#a_teszteles_celja">A tesztelés célja</a></li>
+                                    <li class='leaf'>
+                                        <a href="#emberi_vonatkozasai">A tesztelés emberi vonatkozásai</a>
+                                    </li>
+									<li class='leaf'>
+                                        <a href="#anyagi_elonyei">A tesztelés anyagi előnyei</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class='collapsed'><a href='#chapter2'>2. A tesztelés alapfogalmai</a>
+                                <ul>
+                                    <li class='leaf'><a href="#hiba">A hiba fogalma</a></li>
+                                    <li class='leaf'><a href="#teszteles">Tesztelés</a></li>
+                                    <li class='leaf'><a href="#tesztkornyezet">Tesztkörnyezet</a></li>
+                                    <li class='leaf'><a href="#uzl_kovetelmeny">Üzleti követelmény</a></li>
+                                    <li class='leaf'><a href="#folyamatleirasok">Felhasználói folyamatleírások</a></li>
+                                    <li class='leaf'><a href="#teszt_forgatokonyv">Teszt forgatókönyv</a></li>
+                                    <li class='leaf'><a href="#teszteset">Teszteset</a></li>
+                                    <li class='leaf'><a href="#tesztlepes">Tesztlépés</a></li>
+                                    <li class='leaf'><a href="#review">Review</a></li>
+                                    <li class='leaf'><a href="#teszt_statusz">Teszt státusz</a></li>
+                                    <li class='leaf'><a href="#tesztlepesek_megfogalmazasa">Tesztlépések
+                                            megfogalmazása</a></li>
+                                    <li class='leaf'><a href="#negativ_tesztesetek">Negatív tesztesetek</a></li>
+                                    <li class='leaf'><a href="#teszteles_fazisai">Tesztelés fázisai</a></li>
+                                    <li class='leaf'><a href="#tesztek_tervezese">A tesztek megtervezése</a></li>
+                                    <li class='leaf'><a href="#tervezes_sprintekben">Teszt tervezés sprintekben</a></li>
+                                    <li class='leaf'><a href="#tesztelemzes">Tesztelemzés</a></li>
+                                    <li class='leaf'><a href="#tesztdizajn">Tesztdizájn, előkészítés</a></li>
+                                    <li class='leaf'><a href="#tesztvegrehajtas">Tesztvégrehajtás</a></li>
+                                    <li class='leaf'><a href="#tesztkiertekeles">Tesztkiértékelés</a></li>
+                                    <li class='leaf'><a href="#tamogato_tevekenysegek">Tesztelést támogató
+                                            tevékenységek</a></li>
+                                    <li class='leaf'><a href="#priorizalas">Priorizálás</a></li>
+                                </ul>
+                            </li>
+                            <li class='collapsed'><a href='#chapter3'>3. Tesztelési technikák</a>
+                                <ul>
+                                    <li class='leaf'><a href="#statikus_teszteles">Statikus tesztelés</a></li>
+                                    <li class='collapsed'><a href="#dinamikus_teszteles">Dinamikus tesztelési technikák</a></li>
+                                    <li class='leaf'><a href="#fekete_doboz_teszteles">Fekete doboz tesztelés</a></li>
+                                    <li class='leaf'><a href="#feher_doboz_teszteles">Fehér doboz tesztelés</a></li>
+                                    <li class='leaf'><a href="#szurke_doboz_teszteles">Szürke doboz tesztelés</a></li>
+                                    <li class='leaf'><a href="#felfedezeses_teszteles">Felfedezéses tesztelés</a></li>
+                                    <li class='collapsed'><a href="#tesztvegrehajtas_fajtai">Tesztvégrehajtás fajtái</a>
+                                    </li>
+                                    <li class='leaf'><a href="#manualis_teszteles">Manuális tesztelés</a></li>
+                                    <li class='leaf'><a href="#automata_teszteles">Automata tesztelés</a></li>
+                                </ul>
+							</li>
+						<li class='collapsed'><a href='#chapter4'>4. Tesztek osztályozása</a>	
+								<ul>
+									<li class='collapsed'><a href="#fejlesztesi_modellek">Fejlesztési modellek</a></li>
+                                    <li class='leaf'><a href="#v-modell">V-modell</a></li>
+                                    <li class='leaf'><a href="#agilis_fejlesztes">Agilis fejlesztés</a></li>
+                                    <li class='leaf'><a href="#scrum">SCRUM</a></li>
+                                    <li class='collapsed'><a href="#tesztszintek">Tesztszintek</a></li>
+                                    <li class='leaf'><a href="#komponensteszt">Komponensteszt / Unit teszt</a></li>
+                                    <li class='leaf'><a href="#integracios_teszt">Integrációs teszt</a></li>
+                                    <li class='leaf'><a href="#rendszerteszt">Rendszerteszt</a></li>
+                                    <li class='leaf'><a href="#elfogadasi_teszt">Elfogadási teszt</a></li>
+                                    <li class='collapsed'><a href="#teszttipusok">Teszttípusok</a></li>
+                                    <li class='leaf'><a href="#funkcionalis_teszt">Funkcionális teszt</a>
+									</li>
+                                    <li class='leaf'><a href="#nem_funkcionalis_teszt">Nem funkcionális teszt</a>
+										<ul>
+											<li class='leaf'><a href="#teljesitmenyteszteles">Teljesítménytesztelés</a></li>
+										</ul>
+									</li>
+                                    <li class='leaf'><a href="#regresszios_teszt">Regressziós teszt</a></li>
+                                </ul>
+                            </li>
+							<li class='collapsed'><a href='#chapter5'>5. Tesztprojektek</a>
+                                <ul>
+                                    <li class='collapsed'><a href="#tesztprojekt_szerepkorei">A tesztprojekt szerepkörei</a></li>
+                                    <li class='leaf'><a href="#tesztmenedzser">Tesztmenedzser</a></li>
+									<li class='leaf'><a href="#projektkoordinator">Projektkoordinátor</a></li>
+									<li class='leaf'><a href="#uzleti_elemzo">Üzleti elemző</a></li>
+									<li class='leaf'><a href="#tesztkoordinator">Tesztkoordinátor, tesztvezető</a></li>
+									<li class='leaf'><a href="#tesztelo">Tesztelő</a></li>
+									<li class='collapsed'><a href="#tesztprojekt_fazisai">A tesztprojekt fázisai</a></li>
+									<li class='leaf'><a href="#tervezés_becsles">Tervezés, becslés</a></li>
+                                    <li class='leaf'><a href="#projektindito_meeting">Projektindító (kick-off) meeting</a></li>
+									<li class='leaf'><a href="#teszt_dizajn">Teszt dizájn</a></li>
+									<li class='leaf'><a href="#tesztvegrehajtas">Tesztvégrehajtás</a></li>
+									<li class='leaf'><a href="#ellenorzes_monitorozas">Ellenőrzés, monitorozás</a></li>
+									<li class='leaf'><a href="#jelenteskeszites">Jelentéskészítés</a></li>
+                                </ul>
+                            </li>
+                        	<li class='collapsed'><a href='#chapter6'>6. Tesztkiértékelés</a>
+                                <ul>
+                                    <li class='collapsed'><a href="#hibak_dokumentalasa">Hibák dokumentálása</a></li>
+                                    <li class='leaf'><a href="#hiba_elnevezese">A hiba elnevezése</a></li>
+									<li class='leaf'><a href="#hibaleiras">Hibaleírás</a></li>
+									<li class='leaf'><a href="#fontossag">Fontosság (prioritás) és súlyosság</a></li>
+									<li class='leaf'><a href="#ervenyesseg">Érvényesség</a></li>
+									<li class='leaf'><a href="#hozzarendeles">Hozzárendelés meghatározása</a></li>
+									<li class='leaf'><a href="#kiertekeles">Teszteredmények kiértékelése</a></li>
+                                </ul>
+                            </li>
+						    
+							<li class='collapsed'><a href='#chapter7'>7. Tesztelés a gyakorlatban</a>
+                                <ul>
+									<li class='leaf'><a href="#napi_gyakorlat">A szoftvertesztelés napi gyakorlata</a></li>
+									<li class='leaf'><a href="#porszivo_teszteles">Hogyan teszteljünk például egy porszívót?</a></li>
+									<li class='collapsed'><a href="#gyakorlati_pelda">Gyakorlati példa: webes felhasználói azonosítás tesztelése</a></li>
+									<li class='leaf'><a href="#feladat">A feladat</a></li>
+									<li class='leaf'><a href="#a_tervezes">A tervezés</a></li>
+									<li class='leaf'><a href="#pozitiv">Pozitív teszt szcenárió</a></li>
+									<li class='leaf'><a href="#negativ">Negatív teszt szcenárió</a></li>
+									<li class='leaf'><a href="#jovahagyas">Jóváhagyás</a></li>
+									<li class='leaf'><a href="#kivitelezes">Kivitelezés</a></li>
+									<li class='leaf'><a href="#utoelet">A tesztek „utóélete”</a></li>
+									<li class='leaf'><a href="#kreativ_tesztesetek">A kreatív tesztesetekről</a></li>
+									<li class='leaf'><a href="#itthon_es_nagyvilagban">Szoftvertesztelés Magyarországon és a nagyvilágban</a></li>
+									<li class='collapsed'><a href="#platformok">Tesztelés különböző platformokon</a></li>
+									<li class='leaf'><a href="#asztali">Tesztelés asztali számítógépeken</a></li>
+									<li class='leaf'><a href="#nagygep">Tesztelés nagygépes környezetben</a></li>
+									<li class='leaf'><a href="#XML">Pár szó az XML formátumról</a></li>
+									<li class='collapsed'><a href="#tesztelest_tamogato">Tesztelést támogató szoftverek a gyakorlatban</a></li>
+									<li class='leaf'><a href="#quickteszt">Tesztelés a Quickteszt segítségével</a></li>
+									<li class='collapsed'><a href="#SOAP_UI">SOAP UI</a></li>
+									<li class='leaf'><a href="#SOAP_UI_letrehozasa">SOAP UI létrehozása</a></li>
+									<li class='leaf'><a href="#finomhangolas">A projekt finomhangolása</a></li>
+									<li class='leaf'><a href="#teszthivas">Teszthívás létrehozása a projektben</a></li>
+									<li class='leaf'><a href="#teszteset_letrehozasa">Teszteset létrehozása és végrehajtása</a></li>
+									<li class='leaf'><a href="#teszt_futtatasa">Teszt futtatása</a></li>
+									<li class='leaf'><a href="#hivasok_kezi_modositasa">Hívások kézi módosítása</a></li>
+									<li class='leaf'><a href="#teszteredmenyek_kiertekelese">Teszteredmények kiértékelése</a></li>
+									<li class='leaf'><a href="#JIRA">JIRA</a></li>
+									<li class='collapsed'><a href="#tovabbi_szoftverek">További szoftverek</a></li>
+									<li class='leaf'><a href="#apache_jmeter">Apache JMeter</a></li>
+									<li class='collapsed'><a href="#dokumentacios_mintak">Dokumentációs minták</a></li>
+									<li class='leaf'><a href="#tesztesetek_megfogalmazasa">Tesztesetek megfogalmazása</a></li>
+									<li class='leaf'><a href="#teszteredmenyek_dokumentalasa">Teszteredmények dokumentálása</a></li>
+                                </ul>
+                            </li>
+							
+							<li class='collapsed'><a href='#chapter8'>8. Minőségbiztosítási receptek</a>
+                                <ul>
+									<li class='leaf'><a href="#teszteles_hianya">A tesztelés hiánya</a></li>
+									<li class='leaf'><a href="#tervezes_elmaradasa">A teszt tervezésének elmaradása</a></li>
+									<li class='leaf'><a href="#teszteles_kulonvalasztas">Tesztelés és fejlesztés különválasztása</a></li>
+									<li class='leaf'><a href="#menedzsment_hianya">Tesztmenedzsment hiánya</a></li>
+									<li class='leaf'><a href="#tesztcelok_hianya">Tesztcélok hiánya</a></li>
+									<li class='leaf'><a href="#tesztkornyezet_hianya">Dedikált tesztkörnyezet hiánya</a></li>
+									<li class='leaf'><a href="#tesztadatok_hianya">Tesztadatok hiánya</a></li>
+									<li class='leaf'><a href="#dokumentacio_hianya">Dokumentáció hiánya</a></li>
+									<li class='leaf'><a href="#dokumentalas_hianya">Fejlesztések dokumentálásának hiánya</a></li>
+									<li class='leaf'><a href="#manualis_kulonvalasztas">Manuális és funkcionális tesztelés különválasztása”</a></li>
+									<li class='leaf'><a href="#nem_megfelelo_dokumentalas">Tesztesetek nem megfelelő dokumentálása</a></li>
+									<li class='leaf'><a href="#eredmeny_dok_hianya">Teszteredmények dokumentálásának hiánya</a></li>
+									<li class='leaf'><a href="#kiertekeles_hianyzik">Teszteredmények kiértékelése hiányzik</a></li>
+									<li class='leaf'><a href="#feladatok_delegalasa">Feladatok delegálása</a></li>
+                                </ul>
+                            </li>
+							
+							<li class='collapsed'><a href='#chapter9'>9. Tesztelői kisszótár</a>
+                                <ul>
+									<li class='leaf'><a href="#agilis_fejlesztes1">Agilis fejlesztés</a></li>
+									<li class='leaf'><a href="#atadasi_teszt1">Átadási teszt</a></li>
+									<li class='leaf'><a href="#debugging1">Debugging</a></li>
+									<li class='leaf'><a href="#dinamikus_teszteles1">Dinamikus tesztelés (dynamic testing)</a></li>
+									<li class='leaf'><a href="#elfogadasi_teszt1">Elfogadási teszt</a></li>
+									<li class='leaf'><a href="#elvart_eredmenyek1">Elvárt eredmények (expected result)</a></li>
+									<li class='leaf'><a href="#feher_doboz_teszteles1">Fehér doboz tesztelés (white box testing)</a></li>
+									<li class='leaf'><a href="#fekete_doboz_teszteles1">Fekete doboz tesztelés (black box testing)</a></li>
+									<li class='leaf'><a href="#felfedezeses_teszteles1">Felfedezéses tesztelés (exploratory testing)</a></li>
+									<li class='leaf'><a href="#folyamatleirasok1">Felhasználási folyamatleírások (user story)</a></li>
+									<li class='leaf'><a href="#funkcionalis_specifikacio1">Funkcionális specifikáció</a></li>
+									<li class='leaf'><a href="#funkcionalis_teszt1">Funkcionális teszt</a></li>
+									<li class='leaf'><a href="#komponensteszt1">Komponensteszt</a></li>
+									<li class='leaf'><a href="#hiba1">Hiba (bug, fault, defect)</a></li>
+									<li class='leaf'><a href="#elfogadasi_teszt1">Elfogadási teszt</a></li>
+									<li class='leaf'><a href="#hiba_ervenyessege1">Hiba érvényessége</a></li>
+									<li class='leaf'><a href="#hibajelentes1">Hibajelentés (bug report)</a></li>
+									<li class='leaf'><a href="#hibas_mukodes1">Hibás működés (failure)</a></li>
+									<li class='leaf'><a href="#hibazas1">Hibázás (error, mistake)</a></li>
+									<li class='leaf'><a href="#hotfix1">Hotfix</a></li>
+									<li class='leaf'><a href="#integracios_teszt1">Integrációs teszt</a></li>
+									<li class='leaf'><a href="#kick-off_meeting1">Kick-off meeting</a></li>
+									<li class='leaf'><a href="#minoseg1">Minőség</a></li>
+									<li class='leaf'><a href="#minosegbiztositas1">Minőségbiztosítás (quality assurance, QA)</a></li>
+									<li class='leaf'><a href="#negativ_teszteset1">Negatív teszteset (negative test case)</a></li>
+									<li class='leaf'><a href="#nem_funkcionalis_teszt1">Nem-funkcionális teszt</a></li>
+									<li class='leaf'><a href="#prioritas1">Prioritás</a></li>
+									<li class='leaf'><a href="#priorizalas1">Priorizálás</a></li>
+									<li class='leaf'><a href="#product_owner1">Product owner („terméktulajdonos”)</a></li>
+									<li class='leaf'><a href="#projektkoordinator1">Projektkoordinátor</a></li>
+									<li class='leaf'><a href="#projektmenedzser1">Projektmenedzser</a></li>
+									<li class='leaf'><a href="#regresszios_teszt1">Regressziós teszt</a></li>
+									<li class='leaf'><a href="#release1">Release</a></li>
+									<li class='leaf'><a href="#rendszerteszt1">Rendszerteszt</a></li>
+									<li class='leaf'><a href="#review1">Review</a></li>
+									<li class='leaf'><a href="#SCRUM1">SCRUM</a></li>
+									<li class='leaf'><a href="#scrum_master1">Scrum master</a></li>
+									<li class='leaf'><a href="#sprint1">Sprint</a></li>
+									<li class='leaf'><a href="#statikus_teszteles1">Statikus tesztelés (static testing)</a></li>
+									<li class='leaf'><a href="#strukturalis_teszt1">Strukturális teszt</a></li>
+									<li class='leaf'><a href="#sulyossag1">Súlyosság</a></li>
+									<li class='leaf'><a href="#szurke_doboz_teszteles1">Szürke-doboz tesztelés (grey box testing</a></li>
+									<li class='leaf'><a href="#teszt_dizajn1">Teszt dizájn (test design)</a></li>
+									<li class='leaf'><a href="#teszteset1">Teszteset (test case)</a></li>
+									<li class='leaf'><a href="#tesztfuttatas1">Tesztfuttatás (test execution)</a></li>
+									<li class='leaf'><a href="#tesztkiertekeles1">Tesztkiértékelés (test evaluation)</a></li>
+									<li class='leaf'><a href="#tesztkoordinator1">Tesztkoordinátor, tesztvezető</a></li>
+									<li class='leaf'><a href="#tesztkornyezet1">Tesztkörnyezet (test environment)</a></li>
+									<li class='leaf'><a href="#tesztlepes1">Tesztlépés (test step)</a></li>
+									<li class='leaf'><a href="#tesztmenedzser1">Tesztmenedzser</a></li>
+									<li class='leaf'><a href="#tesztriport1">Tesztriport (test report)</a></li>
+									<li class='leaf'><a href="#teszt_forgatokonyv1">Teszt forgatókönyv (test scenario)</a></li>
+									<li class='leaf'><a href="#teszt_statusz1">Teszt státusz (test status)</a></li>
+									<li class='leaf'><a href="#tesztstrategia1">Tesztstratégia</a></li>
+									<li class='leaf'><a href="#teszt_terv1">Teszt terv (test plan)</a></li>
+									<li class='leaf'><a href="#TDD">Tesztvezérelt fejlesztés</a></li>
+									<li class='leaf'><a href="#zaro_riport1">Teszt záró riport (test exit report)</a></li>
+									<li class='leaf'><a href="#uzleti_elemzo1">Üzleti elemző (business analyst)</a></li>
+									<li class='leaf'><a href="#uzleti_folyamat1">Üzleti folyamat (business process)</a></li>
+									<li class='leaf'><a href="#uzl_kovetelmeny1">Üzleti követelmény (business requirement)</a></li>
+									<li class='leaf'><a href="#v-modell1">V-modell</a></li>
+									<li class='leaf'><a href="#verzio1">Verzió</a></li>
+									<li class='leaf'><a href="#vezeto_fejleszto1">Vezető fejlesztő</a></li>
+									<li class='leaf'><a href="#vezeto_tesztelo1">Vezető tesztelő (test lead)</a></li>
+                                </ul>
+                            </li>
+						<li class='collapsed'><a href='#chapter10'>10. Tesztelés Java környezetben</a>
+                                <ul>
+									<li class='leaf'><a href="#JUnit">JUnit</a></li>
+									<li class='leaf'><a href="#mock">Mock objektum</a></li>
+								</ul>
+						</li>
+						</ul>
+                    </div>
+                </td>
+                <td class="td_middle">&nbsp;</td>
+                <td class="td_text">
+                    <div class="div_text">
+                        <h2 id="chapter1" class="chaptertitle" style="margin-top: 0px">1. Bevezetés</h2>
+                        <div id="mi_a_szoftverteszteles">
+                            <h4>Mi a szoftvertesztelés?</h4>
+                            <p>
+                                A <u>szoftvertesztelés a szoftverfejlesztési folyamat önálló része</u>, ami szorosan kíséri a fejlesztés folyamatát. A szoftvertesztelés egy rendszer vagy <u>egy program
+                                    kontrollált
+                                    körülmények melletti futtatása, és az eredmények
+                                    kiértékelése</u>. Feladatai közé tartozik a fejlesztők és a döntéshozók tájékoztatása, a fejlesztés állapotának mérése és a kockázatkezelés/kockázatbecslés.
+                            </p>
+                            <p>
+                                A szoftvertesztelés a szoftver jellemző tulajdonságait vizsgálja,
+                                <u>minőségbiztosítási
+                                    tevékenység</u>. Felhasználói szemszögből:"Mennyire alkalmas a felhasználó céljára? " Tesztelői szemszögből: „Mennyire egyezik a specifikációval?” A szoftverek tesztelését megtervező,
+                                végrehajtó és az eredményeket kiértékelő szakember a szoftvertesztelő, vagy tesztmérnök.
+                            </p>
+                        </div>
+
+                        <div id="a_teszteles_celja">
+                            <h4>A tesztelés, célja, emberi vonatkozásai, anyagi előnyei</h4>
+                            <p>
+                                <u>A szoftverfejlesztés célja a tesztelt szoftver minőségének
+                                    értékelése és jobbítása, a hibák
+                                    korai felfedezése/megelőzése, és ezáltal a költségek
+                                    csökkentése.</u>
+                            </p>
+                            <p>
+                                A tesztelés elsődleges célja a hibák megtalálása és dokumentálása. Minél korábban derül fény egy hibára, annál olcsóbb annak korrigálása.
+                            </p>
+                            <p>
+                                <u>Másik fontos cél a döntés-előkészítés támogatása</u>: olyan
+                                <u>információk előállítása</u>, melyek alapján kijelentéseket lehet megfogalmazni a szoftver minőségéről, és döntéseket lehet hozni.
+                            </p>
+                            <p>
+                                Elvárás/cél lehet még a szoftverminőség mérése. A minőség az a mérték, amennyire a program, a része vagy egy folyamat megfelel a követelményeknek. A tesztelés a kockázatok becslését és menedzselését is magába foglalhatja (főleg az Agile Programming esetén).
+                            </p>
+                        </div>
+
+                        <div id="emberi_vonatkozasai">
+
+                            <h4>A tesztelés emberi vonatkozásai:</h4>
+							<ul>
+								<li>
+									Fontos tesztelői tulajdonságok: <u>türelem, kíváncsiság, jó tanulási, elemzői
+											képesség</u>.
+								</li>
+								<li>
+									A tesztelés csapatmunka jellege miatt fontos a <u>jó együttműködési, kommunikációs képesség, tárgyilagosság, szakmai érvelés</u>, bizalmi viszony kialakítása a fejlesztőkkel.
+								</li>
+							</ul>
+                        </div>
+						
+						<div id="anyagi_elonyei">
+
+                            <h4>A tesztelés anyagi előnyei:</h4>
+							<ul>
+								<li>
+									A teszteléssel <u>több költséget lehet megtakarítani, mint amennyibe az kerül</u>.
+								</li>
+								<li>
+									A tesztelés már a programkód megírása előtt elkezdődik a specifikációk és tervek alapján, így <u>egy potenciális hibát a szoftver megírása előtt is ki lehet iktatni</u>.
+								</li>
+								<li>
+									<u>A tesztelő külső félként könnyebben észreveheti a fejlesztő hibáját, mint a fejlesztő</u> maga. Ezért sem elegendő a csupán fejlesztők által végzett (unit) tesztelés.
+								</li>
+								<li>
+									A minőség egyenes arányban áll a ráfordított idővel és költséggel. A tesztelés ezáltal növeli a tesztszoftver minőségét.
+								</li>
+							</ul>
+                        </div>
+
+                        <h2 id="chapter2" class="chaptertitle">2. A tesztelés alapfogalmai</h2>
+                        <div id="hiba">
+                            <h4>A hiba fogalma</h4>
+                            <p>
+                                <u>Hibázás</u> (error, mistake): <u>hibajelenség létrehozásának, létrejöttének a
+                                    folyamata</u>.
+                            </p>
+                            <p>
+                                <u>Hiba</u> (defect, fault, bug): <u>konkrét, kimutatható hibajelenség</u>.
+                            </p>
+                            <p>
+                                <u>Hibás működés</u> (failure): a <u>hibajelenségből eredő, az elvárttól eltérő működés</u>, melyet nem emberi tényezők is okozhatnak (például, amikor áramszünet miatt leállnak szerverek)
+                            </p>
+                            <p>
+                                Debugging (hibakeresés, nyomkövetés): <u>a szoftver felügyelt módban történő futtatása
+                                hibakeresés céljából a programozó által</u>, a szoftver alkotóelemeinek ellenőrzésére. Ez nem minősül tesztelésnek. A debugging a fejlesztési munkafolyamat fontos része, mely a forráskód megírását és a futtatható szoftver
+                                létrehozását, valamint javítását segíti.
+                            </p>
+                        </div>
+
+                        <div id="teszteles">
+                            <h4>Tesztelés</h4>
+                            <p>
+                                A <u>szoftvertesztelés</u> egy jól irányított, tervezett, dokumentált, ezáltal követhető és kiértékelhető folyamat, mely <u>számadatokkal alátámasztva képes kijelentéseket
+                                    megfogalmazni egy szoftver minőségéről</u>.
+                            </p>
+                            <p>
+                                A tesztelés az tevékenység, melynek során - előre meghatározott feltételek teljesülése esetén - a teszt tárgyát képező <u>szoftver adott tulajdonságát előre meghatározott
+                                    ismérvek és feltételrendszerek alapján megvizsgáljuk, elemezzük, dokumentáljuk és
+                                    összefoglaljuk</u>. A teszttevékenység végrehajtását tesztvégrehajtásnak, tesztfuttatásnak (test run) nevezzük.
+                            </p>
+                        </div>
+
+                        <div id="tesztkornyezet">
+                            <h4>Tesztkörnyezet</h4>
+                            <p>
+                                A tesztkörnyezet egy olyan <u>informatikai infrastruktúra, mely a leendő, vagy már
+                                    meglévő éles rendszerinfrastruktúrát modellezi</u>, ill. a felhasználás körülményeit szimulálja. Tesztkörnyezet állhat egyetlen számítógépből, de akár több kontinensen szétszórt, hatalmas számítógépközpontokból is.
+                                Ideális esetben a tesztkörnyezet tulajdonságai megegyeznek az éles környezetével. A költségek kímélése végett a valóságban az éles rendszer paramétereihez közeli tesztkörnyezeteket szoktak létrehozni. <u>Éles rendszert tesztelésre használni
+                                    tilos!</u>
+                            </p>
+                            </li>
+                            </u>
+                        </div>
+
+                        <div id="uzl_kovetelmeny">
+                            <h4>Üzleti követelmény</h4>
+                            <p>
+                                Az üzleti követelmény (business requirement) <u>üzleti folyamatok leírása, a megrendelő
+                                    üzleti igényei alapján</u> (pl. banki szoftver esetében ügyfél hitelkérelmének elfogadása).
+                            </p>
+                            </li>
+                            </u>
+                        </div>
+
+                        <div id="folyamatleirasok">
+                            <h4>Felhasználási folyamatleírások (user story)</h4>
+                            <p>
+                                Ezen leírások részletessége változó, de gyakran hasonlóak a tesztesetek tesztlépéseinek leírásához (lásd lentebb). Megfogalmaznak feltételeket, tevékenységeket és ún. elvárt eredményeket.
+                            </p>
+                            </li>
+                            </u>
+                        </div>
+
+                        <div id="teszt_forgatokonyv">
+                            <h4>Teszt forgatókönyv</h4>
+                            <p>
+                                A <u>teszt forgatókönyv</u> (test scenario) <u>az üzleti követelményekből levezetett
+                                    összefoglaló leírás</u>. A teszt szcenárió, felhasználási eset és üzleti követelmény a gyakorlatban nem feltétlenül különálló leírásokat jelent. Erre egységesen alkalmazott rendszer a gyakorlatban nincsen, projektenként
+                                változhat a megvalósításuk.
+                            </p>
+                            </li>
+                            </u>
+                        </div>
+
+                        <div id="teszteset">
+                            <h4>Teszteset</h4>
+                            <p>
+                                A <u>teszteset</u> (test case) <u>a tesztvégrehajtás során elvégzendő, logikailag
+                                    összetartozó teszttevékenység</u>. A teszteseteket különböző névkonvenciók alapján nevekkel szokás ellátni, melyek utalnak a teszt tárgyára. Például: Test_#1_Új_ügyfél_felvétele
+                            </p>
+                            </li>
+                            </u>
+                        </div>
+
+                        <div id="tesztlepes">
+                            <h4>Tesztlépés</h4>
+                            <p>
+                                <u>A tesztlépés</u> (test step): <u>a teszteset egyes elemi tevékenysége, további
+                                    lépésekre nem bontható</u>. Ezáltal a hiba visszakereséséhez, javításához elegendő egyetlen lépést megvizsgálni. A tesztlépés két legfontosabb szerkezeti egysége:
+                            </p>
+                            <ul>
+                                <li>
+                                    A végrehajtandó tevékenység leírása.
+                                </li>
+                                <li>
+                                    Az elvárt eredmény megfogalmazása. Az elvárt eredmény annak a leírása, hogy mi történik akkor, ha a tesztlépés végrehajtása sikeres volt, tehát nem lépett fel hiba. A tesztlépések tartalmazhatnak további információkat is, például tesztadatok megadását,
+                                    további megjegyzéseket a végrehajtáshoz.
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div id="review">
+                            <h4>Review</h4>
+                            <p>
+                                <u>Review</u> (felülvizsgálat): <u>az elkészített tesztesetet egy másik tesztelő
+                                    leellenőrzi, hogy valóban megfelel-e minden követelménynek és minden szükséges
+                                    információt tartalmaz-e.</u> A módszer hatékonyan alkalmazható hasonló és eltérő tapasztalattal rendelkező tesztelőknél is. A gyakorlati kivitelezése lehet informális, de akár erősen formalizált, írásban rögzített is.
+                                A felülvizsgálat végén <u>a teszteset eredeti készítője megkapja mindazon hiányosságok
+                                    listáját, melyeket
+                                    még be kell építenie a tesztesetbe</u>. Egy teszteset elviekben csak review után használható éles tesztelésre.
+                            </p>
+                        </div>
+
+                        <div id="teszt_statusz">
+                            <h4>Teszt státusz</h4>
+                            <p>
+                                A tesztek státusza egy fogalom, elnevezés, mely röviden <u>összefoglalja és megadja az
+                                    adott tesztesethez tartozó teszt aktuális állapotát</u>.
+                            </p>
+                            <p>
+                                Néhány példa tesztek státuszaira:
+                            </p>
+                            <ul>
+                                <li>Előkészületben (In preparation)</li>
+                                <li>Végrehajtható (Ready)</li>
+                                <li>Folyamatban (In Progress)</li>
+                                <li>Blokkolt (Blocked)</li>
+                                <li>Hibás tesztfuttatás (Failed)</li>
+                                <li>Sikeres tesztfuttatás (Passed)</li>
+                                <li>Nem végrehajtható (Not executable)</li>
+                                <li>Nem alkalmazható (Not applicable)</li>
+                            </ul>
+                            <p>
+                                A státuszok sorrendjét ajánlatos előre meghatározni is, ez segíthet nagyszámú hibajelentés feldolgozásában. Folyamatábrával áttekinthető, hogy egyik státusz után milyen másik következik. Példa:
+                            </p>
+                            <img src="./img/teszt_statuszok.jpg" alt="teszt státuszok" title="teszt státuszok">
+                        </div>
+
+                        <div id="tesztlepesek_megfogalmazasa">
+                            <h4>Tesztlépések megfogalmazása</h4>
+                            <ul>
+                                <li>
+                                    <u>Rövid, tömör, lehetőleg egymondatos megfogalmazásokat használjunk</u> („Kattintson a ’Befejez’ feliratú gombra! Az ablak bezáródik.”)
+                                </li>
+                                <li>
+                                    Soha ne használjunk feltételes módot!
+                                </li>
+                                <li>
+                                    <u>Mindig használjunk felszólító, ill. kijelentő módot.</u>
+                                </li>
+                                <li>
+                                    <u>Kerüljük a nem egyértelmű szavakat és kifejezéseket</u>, pl. probléma, működik.
+                                </li>
+                                <li>
+                                    Ne hivatkozzunk máshová vagy kifelé („Lásd itt és itt”)
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div id="negativ_tesztesetek">
+                            <h4>Negatív tesztesetek</h4>
+                            <p>
+                                A negatív tesztesetek a hibatűrés ellenőrzésére irányul, <u>cél a hibajelenség
+                                    elérése</u> (pl. biztonsági teszteknél)
+                            </p>
+                        </div>
+
+                        <div id="teszteles_fazisai">
+                            <h4>Tesztelés fázisai</h4>
+                            <ul>
+                                <li>
+                                    Tervezés
+                                </li>
+                                <li>
+                                    Elemzés
+                                    <li>
+                                        Tesztdizájn
+                                    </li>
+                                    <li>
+                                        Végrehajtás
+                                    </li>
+                                    <li>
+                                        Kiértékelés
+                                    </li>
+                                    <li>
+                                        Tesztjelentés elkészítése
+                                    </li>
+                            </ul>
+                        </div>
+
+                        <div id="tesztek_tervezese">
+                            <h4>A tesztek megtervezése</h4>
+                            <p>
+                                A tesztek végrehajtását gondos tervezés előzi meg. A tervezés során <u>meghatározzák a
+                                    teszt célját, a teszt tárgyát, a teszttevékenységek végrehajtásának feltételeit,
+                                    módját és a kiértékelés kritériumait</u>. A tervezést a tesztmenedzser, vagy a vezető tesztelő készít el. A tesztterv nem részletes technikai megvalósításokat taglal, hanem folyamatokat ír le, témaköröket mutat be.
+                                A fejlesztők megtudhatják belőle, hogyan és mire alapozva fognak hibajelentéseket kapni a tesztelőktől, a megrendelő pedig megbizonyosodhat afelől, hogy a szoftvert minden, általa fontosnak ítélt szempont szerint le fogják
+                                tesztelni. A tesztterv módosítható a résztvevők javaslatai alapján. Fontos, hogy <u>a
+                                    teszttervben vegyük figyelembe a fejlesztőknek észrevételeit,
+                                    módosító javaslatait</u>.
+                            </p>
+                        </div>
+
+                        <div id="tervezes_sprintekben">
+                            <h4>Teszt tervezés sprintekben</h4>
+                            <p>
+                                Tesztek tervezésére nemcsak projektek induló fázisában, hanem sprintekben (SCRUM rendszerben) is szükség van. Ez egy kevésbé formalizált tervezés, inkább egy <u>kötetlen
+                                    szakmai beszélgetés például az üzleti elemző, a projekt menedzser, a fejlesztők és
+                                    természetesen a tesztelők között. A tesztelők felelőssége, hogy ilyenkor minden
+                                    kérdést tisztázzanak, amely a tesztelés végrehajtását veszélyeztetheti</u>. Ennek során általában olyan kérdések is felmerülnek, melyek a fejlesztők számára is létfontosságúak, tehát az eljárással minden résztvevő jól
+                                jár. Ha ez a megbeszélés elmarad, az sprint közben többnyire megakasztja a tesztelés és nem ritkán a fejlesztés lendületét is. A tesztelők információk híján nem tudják pontosan ellátni feladatukat, menet közben kell tisztázni
+                                részleteket. Emiatt rengeteg idő elmehet, ami végeredményben többletköltséget eredményez.
+                            </p>
+                        </div>
+
+                        <div id="tesztelemzes">
+                            <h4>Tesztelemzés</h4>
+                            <p>
+                                <u>A teszt végrehajtóinak</u> a tesztterv céljai és végrehajtásának feltételei alapján tételesen <u>meg kell vizsgálniuk, hogy a teszt kivitelezhető-e</u>. Az elemzés során a teszt egyes részeinek a priorizálása is megtörténik.
+                                </>Fontos feltételek: tesztkörnyezet</u> előkészítése, beszerzendő <u>teszteszközök</u> feltérképezése is.
+                            </p>
+                        </div>
+
+                        <div id="tesztdizajn">
+                            <h4>Tesztdizájn, előkészítés</h4>
+                            <p>
+                                A tesztdizájn során <u>a végrehajtandó tesztek tesztlépések szintjén vannak
+                                    megfogalmazva</u>. Ezek már nem magasszintű megfogalmazások, hanem konkrét tesztlépések szintjén leírt tevékenységek. Lényegében ekkor jönnek létre „fizikailag” is a tesztesetek. Fontos az esetlegesen szükséges <u>tesztadatok
+                                    meghatározása és előállítása</u>, automatizált tesztek esetében a <u>teszt szkriptek
+                                    megírása</u>, ill. az automatizálást segítő <u>tesztelő szoftver beállítása</u>.
+                            </p>
+                        </div>
+
+                        <div id="tesztvegrehajtas">
+                            <h4>Tesztvégrehajtás</h4>
+                            <p>
+                                A tesztek végrehajtása (lefuttatása) során <u>eredményt kapunk</u>. Még az is eredmény, ha a teszt maga nem hajtható végre. A végrehajtás végén mindig a kiértékelés és <u>az
+                                    eredmények dokumentálása is megtörténik</u>.
+
+                            </p>
+                        </div>
+
+                        <div id="tesztkiertekeles">
+                            <h4>Tesztkiértékelés</h4>
+                            <p>
+                                <u>A kiértékelés során</u> a dizájn fázisban megfogalmazott feltételek és a szintén akkor megfogalmazott, <u>elvárt teszteredményeket hasonlítják össze a tényleges
+                                    tesztvégrehajtás eredményeivel</u>. A kiértékelésről <u>egy rövid összegző jelentés
+                                    készül</u>, melyet teszt riportnak is neveznek. <u>A tesztriport egyik változata a
+                                    záró teszt
+                                    riport</u> (test exit report), mely <u>a tesztelés egészét értékeli ki, annak teljes
+                                    végrehajtása után</u> és prezentálja a teszteredményeket is.
+                            </p>
+                        </div>
+
+                        <div id="tamogato_tevekenysegek">
+                            <h4>Tesztelést támogató tevékenységek</h4>
+                            <p>
+                                <u>A tesztelés sikerességét befolyásoló fontos tényezők a tesztkörnyezet karbantartása
+                                    és a tesztadatok előállítása.</u> A tesztkörnyezet karbantartása egy kizárólag tesztelésre dedikált számítógép felügyeletét és folyamatos naprakészen tartását jelenti. A nem aktuális
+                                vagy hibás tesztadatok hibás teszteredményeket produkálnak, ami rengeteg időt vesz el (nyomozgatás) és plusz költségeket okoz.
+                            </p>
+                        </div>
+
+                        <div id="priorizalas">
+                            <h4>Priorizálás</h4>
+                            <p>
+                                <u>A Priorizálás egy fontossági sorrend meghatározása, ami alapján az egyes teszteket el kell végezni.</u> Ennek egyik célja a hibák mihamarabbi felfedezése.
+                            </p>
+                        </div>
+
+                        <h2 id="chapter3" class="chaptertitle">3. Tesztelési technikák</h2>
+
+                        <div id="statikus_teszteles">
+                            <h4>Statikus tesztelés</h4>
+                            <p>
+                                Statikus tesztelés esetén a tesztelők a rendelkezésre álló <u>szoftverspecifikációk,
+                                    tervek alapján már a tesztek végrehajtása előtt elkészítik a tesztjeik tervét,
+                                    meghatározzák a tesztek elvárt eredményeit</u>, felmérik, hogy a szoftver egyáltalán tesztelhető-e a tervezett módon, eszközökkel.
+                            </p>
+                            <p>
+                                A statikus tesztelés során a <u>szoftver forráskódjának / dokumentációjának az ellenőrzésére kerül sor,
+                                    különböző szempontok alapján</u>. A fentiekből következik az is, hogy szigorúan véve ilyenkor <u>nem hibákat, hanem potenciális hibaforrásokat keresünk</u>. Ezeket a teszteket manuálisan és automatizáltan is végre lehethajtani.
+                                <u>Automatizált
+                                    ellenőrzésekre speciális forráskódelemző segédprogramok is használhatók.</u>
+                            </p>
+                        </div>
+
+                        <div id="dinamikus_teszteles">
+                            <h4><b>Dinamikus tesztelési technikák:</b></h4>
+                            <p>
+                                <u>Dinamikus tesztelés a szoftverek futtatásán alapuló tesztelés, amikor a szoftver
+                                    tesztkörnyezteben fut.</u> Nemcsak a fejlesztési fázisban, hanem annak teljes életciklusán keresztül alkalmazható.
+                            </p>
+                        </div>
+
+                        <div id="fekete_doboz_teszteles">
+                            <h4>Fekete doboz tesztelés</h4>
+                            <p>
+                                <u>A tesztelő nem rendelkezik információval a szoftver belső struktúrájáról</u>. Ez a tesztelés hasonlít leginkább a végfelhasználói viselkedésre. Néhány példa:
+                                <ul>
+                                    <li>
+                                        Értékhatárok és értéktartományok tesztelése.
+                                    </li>
+                                    <li>
+                                        Üzleti folyamat alapú technikák.
+                                    </li>
+                                    <li>
+                                        Logikai mátrix alapú teszt.
+                                    </li>
+                                </ul>
+                            </p>
+                        </div>
+
+                        <div id="feher_doboz_teszteles">
+                            <h4>Fehér doboz tesztelés</h4>
+                            <p>
+                                <u>A tesztelőnek pontosan ismernie kell a szoftver belső szerkezetét, működését és ehhez szabva tervezi meg és hajtja végre a teszteket.</u> A fehér doboz teszteket szokás strukturális teszteknek is nevezni. Néhány példa:
+                                <ul>
+                                    <li>
+                                        Döntési ág alapú tesztek.
+                                    </li>
+                                    <li>
+                                        Utasítás-lefedettség alapú technikák.
+                                    </li>
+                                </ul>
+                            </p>
+							<br>
+
+                            <p><u>A fehér doboz tesztelési technika jellemzően komponensteszt (Unit teszt) formájában valósul meg.</u> (Fontos pontosan ismerni a komponens működését, viszont nem kell vizsgálni a többi komponenssel való együttműködését.)</p>
+                        </div>
+
+                        <div id="szurke_doboz_teszteles">
+                            <h4>Szürke doboz tesztelés</h4>
+                            <p>
+                                <u>A tesztelő korlátozott ismeretekkel rendelkezik a tesztelendő szoftver belső szerkezetéről</u> is, de ez lehet technikai adat is, például <u>a szoftver által kezelt adatstruktúrákról</u>.
+                            </p>
+                        </div>
+
+                        <div id="felfedezeses_teszteles">
+                            <h4>Felfedezéses tesztelés</h4>
+                            <p>
+                                <u>A tesztelő a teszt során ismeri meg a szoftvert</u> úgy, mint egy kezdő felhasználó. A módszer előnye, hogy <u>nem rögzített munkafolyamatok mentén zajlik a tesztelés, hanem műveletek véletlenszerű kombinációjával. Így olyan rejtett hibákat is lehet találni, melyek csak sokkal később derülnének ki</u>,
+                                a felhasználói oldalon.
+                            </p>
+                        </div>
+
+                        <h4 id="tesztvegrehajtas_fajtai"><b>Tesztvégrehajtás fajtái:</b></h4>
+                        <div id="manualis_teszteles">
+                            <h4>Manuális tesztelés</h4>
+                            <p>
+                                <u>A tesztelő számítógépnél teszteseteket hajt végre</u>, az azokban megfogalmazott lépéseket követve. <u>A manuális tesztelés óriási előnye a rugalmasság</u>, hiszen bármely pontján módosítani lehet a teszt végrehajtását.
+                                Ráadásul az emberi intuíció is teljes mértékben kiaknázható, amire egy gép nem képes.
+                                <u>Hátránya a magas
+                                    költsége</u>, illetve az, hogy nagy mennyiségű, vagy komplexitású tesztekre nem alkalmazható.
+                            </p>
+                        </div>
+
+                        <div id="automata_teszteles">
+                            <h4>Automata tesztelés</h4>
+                            <p>
+                                <u>Az automatizált tesztek emberi beavatkozás nélkül hajtódnak végre</u>. Technikai hátterük változatos: <u>szkriptek, programozási nyelvek, speciális segédprogramok</u>. Az automata tesztek <u>gyorsan, nagy mennyiségű tesztet és tesztadatot képesek
+                                    kezelni</u>, így olyan feladatokra is alkalmasak, melyekre a manuális tesztek nem. Hátrányuk, hogy speciális technikai ismereteket igényelnek és a karbantartásuk is időigényesebb.
+                            </p>
+                        </div>
+
+                        <h2 id="chapter4" class="chaptertitle">4. Tesztek osztályozása</h2>
+						
+						<h4 id="fejlesztesi_modellek"><b>Fejlesztési modellek:</b></h4>
+
+                        <div id="v-modell">
+                            <h4>V-modell</h4>
+                            <p>
+                                A V-modell egyfajta lineáris fejlesztési folyamat, melynek főbb állomásai:
+                                <ul>
+                                    <li>
+                                        komponensfejlesztés
+                                    </li>
+                                    <li>
+                                        integrációs fejlesztés
+                                    </li>
+                                    <li>
+                                        rendszerfejlesztés
+                                    </li>
+                                    <li>
+                                        átadás, elfogadás
+                                    </li>
+                                </ul>
+                            </p>
+                        </div>
+
+                        <div id="agilis_fejlesztes">
+                            <h4>Agilis fejlesztés</h4>
+                            <p>
+                                A fejlesztésben résztvevő csapatok szorosan együtt tudnak működni egymással és önszerveződőek.
+                                <u>A folyamatok körkörös ciklusokban zajlanak (tervezés, implementálás, tesztelés,
+                                    kiértékelés),
+                                    ami nagyfokú rugalmasságot kölcsönöz a fejlesztési projektnek</u>.
+                            </p>
+                        </div>
+
+                        <div id="scrum">
+                            <h4>SCRUM</h4>
+                            <p>
+                                A SCRUM alighanem az egyik legelterjedtebb és legdivatosabb fejlesztési módszer, mely az agilis módszertanokhoz tartozik. <u>Kis létszámú, 6-8 fős fejlesztői csapatokra épít,
+                                    melyekben
+                                    jellemzően 2-2 tesztelő van. A munka előrehaladásáért és a csapat összetartásáért a
+                                    scrum
+                                    master felel, míg az operatív irányításért a vezető fejlesztő. A csapathoz ideális
+                                    esetben
+                                    egy üzleti elemző is tartozik, aki az üzleti folyamatok oldaláról érti a szoftver
+                                    működését.</u> Tesztelési szempontból <u>több csapat összehangolt tesztelői
+                                    tevékenységét a
+                                    tesztmenedzser végzi</u>, aki teljes munka folyamatos előrehaladása felett őrködik. A SCRUM a munkákat általában hetekre és napokra bontja. A heti bontást sprintnek nevezik. Megjegyezzük, hogy egy sprint időtartama
+                                lehet több is egy hétnél. A napi bontás alatt a napokat indító megbeszéléseket kell érteni, mely elsősorban a csapat tagjainak szól és csak másodsorban a vezetőségnek.
+                                <u>A napi megbeszélés (daily standup meeting) elsődleges célja annak tisztázása, hogy
+                                    milyen
+                                    feladatok lesznek az adott napon és általában hogyan halad a csapat a munkájával a
+                                    terhez
+                                    képest.</u>
+                            </p>
+                            <p>
+                                A negyedéves, féléves, esetleg éves szoftverkiadások adhatják meg a munkák tágabb kereteit. Ilyenkor általában a projekten dolgozó összes csapat összegyűlik és a vezetők kiértékelik az elért célokat. Ezek a megbeszélések egyben fel is vezetik az újabb
+                                fejlesztési ciklust, ami így végeredményben egyenes folytatása az előzőnek. Természetesen jóval több szerepkör létezik egy-egy projekten belül, mint például a product owner, vagy a projektmenedzser stb., ám ezek tesztelői
+                                szempontból kevésbé érdekesek.
+                            </p>
+                        </div>
+
+                        <h4 id="tesztszintek"><b>Tesztszintek:</b></h4>
+
+                        <div id="komponensteszt">
+                            <h4>Komponensteszt / Unit teszt</h4>
+                            <p>
+                                <u>A komponensteszt / Unit teszt egyetlen komponens önmagában történő működését vizsgálja</u> (alacsony szinten). Ennek során nincs külső függőség, nem vizsgálja a többi komponenssel való együttműködését. Például Unit tesztet lehet végezni egy összeadás függyvényre. A különböző paraméterekkel teszteseteket hozhatunk létre, és ha mindegyik egyezik a függvény ereményével, akkor a Unit teszt sikeres. (Az ilyen teszteseteket az eredményeikkel együtt elmentjük, és ezeket a változatlan függvényhez így később is lefuttathatjuk azt ellenőrizve, hogy a függvény még helyesen működik-e.)
+                            </p>
+                        	<br>
+							
+							<p>
+                                A komponenstesztek tipikusan <u>izoláltan is végrehajtható tesztek egyszerűbb programok,
+                                    szoftvermodulok, vagy programozási egységek, például osztályok vonatkozásában</u>. Mivel ez a tesztelési szint erősen forráskód közeli lehet, így <u>gyakori, hogy a
+                                    tesztelésben aktívan segédkezik maga a forráskód írója is. A
+                                    tesztvezérelt fejlesztés során a forráskód eleve úgy van megírva, hogy (lehetőleg
+                                    automatizáltan) komponensteszteket lehessen végrehajtani rajtuk.</u> Fehér doboz tesztelési technikának minősül, mivel pontosan kell ismerni a komponens működését.
+                            </p>
+
+						
+						</div>
+
+                        <div id="integracios_teszt">
+                            <h4>Integrációs teszt</h4>
+                            <p>
+                                Az integrációs tesztek a <u>komponensek egymás közötti, vagy az operációs rendszerrel,
+                                    csatolófelületekkel stb. történő sikeres együttműködésének a vizsgálatát célozzák.
+                                    Különösen
+                                    nagyobb rendszereknél fontos a fokozatos, egymásra épülő tesztelés, mert
+                                    átgondolatlan vagy
+                                    hanyag megközelítéssel nehéz és tovább tarthat a hibák valódi okának megállapítása,
+                                    ami
+                                    jelentős és felesleges költségeket okozhat.</u>
+                            </p>
+                        </div>
+
+                        <div id="rendszerteszt">
+                            <h4>Rendszerteszt</h4>
+                            <p>
+                                A rendszertesztek tulajdonképpen az <u>éles működésű rendszert hivatottak modellezni és
+                                    vizsgálni ahhoz minél jobban hasonlító tesztkörnyezetben.</u> Éles rendszeren végzett átfogó rendszerintegrációs tesztelés (például egy új rendszer bevezetése) szóba sem jöhet! A rendszertesztek a rendszer egészének
+                                a működését vizsgálják, kevésbé az egyes funkcionalitásokra.
+                            </p>
+                        </div>
+
+                        <div id="elfogadasi_teszt">
+                            <h4>Elfogadási teszt</h4>
+                            <p>
+                                A rendszertesztek után többféle, ún. elfogadási teszt végrehajtására is sor kerül. Ezen tesztek
+                                <u>célja annak megállapítása, hogy a szoftver (rendszer) valóban képes ellátni a
+                                    feladatát az
+                                    elvárt módon. Ezeket hivatásos tesztelők, külső hivatásos tesztelők, vagy maguk a
+                                    megrendelők, esetleg végfelhasználók végzik.</u> Az elfogadási tesztek típusai:
+                                <ul>
+                                    <li>
+                                        Felhasználói elfogadási teszt: ún. üzleti felhasználók végzik.
+                                    </li>
+                                    <li>
+                                        Üzemeltetési elfogadási teszt: a szoftver üzemeltetése során tipikusan felmerülő folyamatok tesztelése (pl. visszaállíthatóság)
+                                    </li>
+                                    <li>
+                                        Szerződésalapú elfogadási teszt: ezen teszt alapja a fejlesztési projektet megelőzően kötött szerződés, melyben bizonyos szabályozásokat, elvárásokat fogalmaztak meg. Ilyenkor ezek ellenőrzését végzik el.
+                                    </li>
+                                    <li>
+                                        Alfa teszt: a potenciális végfelhasználók (teljesen hétköznapi felhasználók, nem hivatásos tesztelők) fejlesztőközpontban végrehajtott tesztjei.
+                                    </li>
+                                    <li>
+                                        Béta teszt: szintén végfelhasználók által végrehajtott tesztek, melyet általában mindenki a saját otthonában, ill. saját eszközein végezhet.
+                                    </li>
+                                </ul>
+                            </p>
+                        </div>
+
+                        <h4 id="teszttipusok"><b>Teszttípusok:</b></h4>
+
+                        <div id="funkcionalis_teszt">
+                            <h4>Funkcionális teszt</h4>
+                            <p>
+                                A funkcionális tesztek <u>a szoftver előre meghatározott / dokumentált, konkrét funkcióit vizsgálják. Ezek a tesztek tipikusan ún. feketedoboz tesztek, amelyek a szoftver belső struktúrájának ismerete nélkül</u>, mintegy
+                                „kívülről szemlélődve” kerülnek végrehajtásra. <u>A funkcionális teszt azt vizsgálja, AMIT a szoftver csinál.</u> A funkcionális tesztek alapja mindig egy dokumentum. Ez legrosszabb esetben egy felhasználói kézikönyv, ám
+                                erre a célra külön dokumentumokat, ún. <u>funkcionális specifikációkat célszerű készíteni</u>. Ezek a leírások ugyanis olyan technikai információkat, illetve folyamatleírásokat is tartalmaznak, melyekre egy átlagos végfelhasználónak
+                                ugyan nincsen szüksége, ám a tesztelés szempontjából életbe vágó lehet. Egy ügyfélnyilvántartó szoftver esetében külön leírás szólhat például egy új ügyfél felvételéhez szükséges lépésekről, de akár arról is, hogy a folyamat
+                                során az adatok mely rendszereken mennek keresztül, hol és hogyan tárolódnak stb. Egy kellő részletességű leírás alapján elkészíthetőek a tesztesetek, tesztlépések. Funkcionális teszteket bármely tesztszinten végre lehet
+                                hajtani, de leginkább akkor célszerű, miután lefutottak a komponens- és integrációs tesztek.  A funkcionális teszteket jellemzően automatizálják.
+                            </p>
+                        </div>
+
+                        <div id="nem_funkcionalis_teszt">
+                            <h4>Nem funkcionális teszt</h4>
+                            <p>
+                                A nem-funkcionális teszt a szűkebb-tágabb értelemben vett szoftver számszerűsíthető ismérveit vizsgálja; <u>azt elemzi, hogy az adott szoftver valamit HOGYAN csinál</u>, vagy valamilyen feltételnek milyen mértékben felel
+                                meg. Tipikus nem-funkcionális tesztek: <u>teljesítményteszt, terheléses (stessz) teszt, használhatósági teszt, megbízhatósági, biztonsági (feltörhetőségi), hordozhatósági teszt stb. Nem-funkcionális teszteket bármely tesztszinten végre lehet hajtani.</u>
+                            </p>
+                        </div>
+						
+						<br>
+						<div>
+							<div id="teljesitmenyteszteles">
+							<p><b>Teljesítménytesztelés</b></p>
+                            <a href="./pdf/teljesitmenyteszteles.pdf" target=_blank">Teljesítménytesztelés pdf megnyitása teljes ablakban</a>
+							<p align="center"><embed width="100%" height="900px" style="background-color:inherit" src="./pdf/teljesitmenyteszteles.pdf"></p>
+    					</div>		
+
+                        <div id="regresszios_teszt">
+                            <h4>Regressziós teszt</h4>
+                            <p>
+                                A regressziós teszt egy <u>már letesztelt szoftver ismételt tesztelését jelenti</u>. Ezen teszt elsődleges célja az, hogy ellenőrizze a korábban már sikeresen tesztelt szoftvertulajdonságok helyes működését. <u>Egy hiba kijavítását szintén regressziós teszteléssel szokás ellenőrizni</u>.
+                                Előfordulhat, hogy a hiba csak részben, vagy egyáltalán nem tűnt el, sőt, a hibajavítás akár más helyen is (újabb) hibát vált ki.
+                            </p>
+                            
+							<h2 id="chapter5" class="chaptertitle">5. Tesztprojektek</h2>
+							
+							<h4 id="tesztprojekt_szerepkorei"><b>A tesztprojekt szerepkörei:</b></h4>
+							 <p>A legfontosabb szerepkörök:</p>
+							<ul>
+								<li>
+								Tesztmenedzser
+								</li>			
+								<li>
+								Projektkoordinátor
+								</li>								
+								<li>
+								Tesztkoordinátor, tesztvezető
+								</li>								
+								<li>
+								Üzleti elemző
+								</li>								
+								<li>
+								Tesztelő
+								</li>																
+							</ul>
+										
+                        <div id="tesztmenedzser">
+                            <h4>Tesztmenedzser</h4>
+                            <p>
+<u>A tesztmenedzser legfontosabb feladata a tesztelés szinkronban tartása a fejlesztéssel, a tesztelői csapatok munkájának monitorozása és a tesztelők folyamatos informálása.</u>
+</p>
+<p>
+Ha ezek közül bármelyik rész biceg, a tesztelési tevékenység egy párhuzamos dimenzióba kerül, mely köszönő viszonyban sincsen az eredeti valósággal.
+A tesztelésnek a fejlesztéssel történő szinkronban tartása adja az alapját maguknak a teszteknek, elvégre csak annak a tesztnek van értelme, amely a legaktuálisabb fejlesztésekből indul ki.
+A tesztek előrehaladásáról és a teszteredményekről a menedzsernek mindig friss információkkal kell rendelkeznie, mivel a tesztmenedzser tud végleges és átfogó képet adni a tesztprojekt aktuális eredményeiről.
+                            </p>
+                        </div>
+
+                        <div id="projektkoordinator">
+                            <h4>Projektkoordinátor</h4>
+                            <p>
+<u>Fontos további feladata, hogy a tesztelőket mindig ellássa a munkájukhoz szükséges információkkal és eszközökkel.</u> Ez ugyanis NEM a tesztelő feladata, hanem a menedzseré. A menedzseri munkából kifolyólag elengedhetetlen az empátia és a humánus, emberközeli hozzáállás is. Mindig szem előtt kell tartania, hogy különböző habitusú emberekkel dolgozik. A gyakorlatban ez általában valóban így is van. A tesztmenedzser elsősorban vezető, nem pedig tesztelő. Ennek megfelelően nem feladata a tesztelés mikromenedzselése.
+                            </p>
+                        </div>							
+							
+	                        <div id="uzleti_elemzo">
+                            <h4>Üzleti elemző</h4>
+                            <p>
+Az üzleti elemző mind a fejlesztők, mind a tesztelők munkáját segíti. <u>Feladata a folyamatok és a kitűzött célok gyakorlati megvalósulásának megértése, ennek írásos formában történő rögzítése</u> és a felmerülő akadályokról, ellentmondásokról <u>a projekt felsőbb vezetésének tájékoztatása</u>. Az üzleti elemzők gyakran az adott szoftvertípus professzionális, korábbi felhasználói közül kerülnek ki. Az üzleti elemzők feladata annak támogatása is, hogy a tesztelők rendelkezésére álljanak mindazon információk és leírások, melyalapján a tesztelés elvégezhető.
+                            </p>
+                        </div>						
+							
+		                        <div id="tesztkoordinator">
+                            <h4>Tesztkoordinátor, tesztvezető</h4>
+                            <p>
+A tesztkoordinátorok szerepe hasonló a tesztmenedzserekéhez, azzal a különbséggel, hogy <u>kisebb tesztelői csapatok munkáját koordinálják</u>. Lényegében a tesztmenedzser „helyi megbízottjai”. A tesztkoordinátorok általában maguk is tesztelők, akik tapasztalatuk révén képesek átlátni egy projekt kihívásait és feladatait, valamint ezt kommunikálni is tudják, elsősorban a tesztmenedzser és a többi tesztelő felé is.
+                            </p>
+                        </div>						
+							
+			                        <div id="tesztelo">
+                            <h4>Tesztelő</h4>
+                            <p>
+<u>A tesztelő a gyakorlatban végrehajtandó tesztek megtervezéséért, dokumentálásáért, végrehajtásáért és kiértékeléséért felel</u>. A tesztelőkre gyakorta igen nagy nyomás nehezedik, mivel a projekt számos résztvevője megpróbálja érdekeit rajtuk keresztül érvényre juttatni. Ilyen esetekben a professzionális tesztelői hozzáállás az objektivitás megőrzése, ami a rugalmas hozzáállás mellett bizonyos fokú keménységet és persze rutint is igényel a nyomás elhárítására.
+                            </p>
+                        </div>									
+							
+						<h4 id="tesztprojekt_fazisai"><b>A tesztprojekt fázisai:</b></h4>
+							 <p>
+<u>A tesztelés fázisai egymás után következnek, de a valóságban körkörös, visszatérő folyamatokról van szó.</u> Egy folyamat tehát akár menet közben is változhat, annak ellenére is, hogy korábban már kilettek dolgozva.
+Egy-egy apróbb változtatásnak komoly pénzügyi vonzata is lehet, ezért ez a kérdés nem triviális, bár sokszor sokan elkövetik azt a hibát, hogy nem vesznek tudomást róla.
+
+							 </p>
+							 </br>
+							 <p>A legfontosabb fázisok:</p>
+							<ul>
+								<li>
+								Tervezés, becslés
+								</li>			
+								<li>
+								Projektindító (kick-off) meeting
+								</li>								
+								<li>
+								Teszt dizájn
+								</li>								
+								<li>
+								Tesztvégrehajtás
+								</li>								
+								<li>
+								Ellenőrzés, monitorozás
+								</li>																
+								<li>
+								Jelentéskészítés
+								</li>																
+							</ul>
+										
+                        <div id="tervezés_becsles">
+                            <h4>Tervezés, becslés</h4>
+                            <p>
+A tervezés a projekt előkészítő fázisában történik, amikor a program megírása még nem történt meg.
+</p>
+<p>
+<u>A tervezés során tisztázni kell, hogy mit és milyen szempontból kell majd tesztelni.</u> Ez nem csak azért fontos, mert egy szoftvert teljes mértékben nem lehet soha letesztelni, hanem azért is, mert minél többféle típusú tesztet hajtunk végre, a tesztelés annál drágább lesz.
+</p>
+<p>
+A tervezés során a tesztmenedzser, a tesztelők véleményét is figyelembe véve megbecsüli, hogy mely teszttípusokkal, hány tesztelővel stb. milyen eredmények elérésére van lehetőség.
+</p>
+<p>
+<u>A tesztstratégia tartalmazza a tesztek kivitelezésének pontos technikai részleteit és a tesztelés céljait.</u>
+                            </p>
+                        </div>
+						
+	                        <div id="projektindito_meeting">
+                            <h4>Projektindító (kick-off) meeting</h4>
+                            <p>
+A kick-off legtöbbször egy informális megbeszélés, melyet a projektindulásakor szoktak megtartani.
+</p>
+<p>
+Legfontosabb célja a projekt szereplőinek bemutatása, a szerepkörök és felelősségi körök, valamint annak tisztázása, hogy a tesztelés elkezdésének nincsenek-e személyi-, ill. technikai akadályai.
+</p>
+<p>
+Tesztelői szempontból fontos annak tisztázása, hogy felmerülő kérdések esetén kihez lehet fordulni, ill. az is, hogy kiknek és milyen formában kell tájékoztatást adni a munkákról.
+</p>
+                        </div>
+						
+						<div id="teszt_dizajn">
+                            <h4>Teszt dizájn</h4>
+                            <p>
+A konkrét tesztek megtervezése a tesztelők felelőssége és feladatköre. <u>Ez többnyire konkrét tesztesetek megírását, előkészítését jelenti</u>, a projekt számára meghatározott szoftveres eszközök segítségével.
+</p>
+                        </div>
+							
+						<div id="tesztvegrehajtas">
+                            <h4>Tesztvégrehajtás</h4>
+                            <p>
+<u>A teszt végrehajtása a tesztesetben leírtak szerint történik.</u> A végrehajtás a kiértékeléssel ér véget, ami valamilyen dokumentum, jelentés formájában ölt testet.
+</p>
+                        </div>
+						
+						<div id="ellenorzes_monitorozas">
+                            <h4>Ellenőrzés, monitorozás</h4>
+                            <p>
+<u>A tesztek végrehajtását napi szinten érdemes és szükséges nyomon követni. Így azonnal kiderül, ha a tesztelés üteme elmarad a korábban tervezettől és az is, ha a szoftver minőségével kapcsolatban aggályok merülnek fel.</u>
+</p>
+<p>
+A monitorozást a tesztmenedzser a tesztkoordinátor segítségével szoktak végezni.
+</p>
+                        </div>
+						
+						<div id="jelenteskeszites">
+                            <h4>Jelentéskészítés</h4>
+                            <p>
+Egy-egy nagyobb tesztfázis közben és végén is külön jelentések, összefoglalók készülhetnek, melyek <u>elsősorban a menedzsment számára hordoznak információkat a projekt előrehaladásával, a szoftver minőségével kapcsolatban</u>.
+</p>
+                        </div>
+						
+						<h2 id="chapter6" class="chaptertitle">6. Tesztkiértékelés</h2>
+						                            <p>
+<u>A tesztek kiértékelése az elvégzett munka dokumentálását jelenti. Elsődleges célja a feltárt hibák rögzítése</u>. Ehhez hozzátartozik a hiba rögzítésének körülménye is. A tesztelő feladata mindig az, hogy a meglévő keretek között maximális pontossággal és részletességgel, de terjengősség nélkül rögzítse a hibákat. Ennek elmaradása és utólagos pótlása későbbiekben plusz erőforrásokat, elsősorban időt igényel a résztvevőktől, ami megdrágíthatja a projektet.
+</p>
+			
+						<h4 id="hibak_dokumentalasa"><b>Hibák dokumentálása:</b></h4>			
+						
+						<div id="hiba_elnevezese">
+                            <h4>A hiba elnevezése</h4>
+                            <p>
+<u>A hiba elnevezése általában egy rövid, mondatnyi szöveg.</u> A modern hibarögzítő rendszerekben a leírás, vagy összegzés egyfajta címként is felfogható. <u>Célja, hogy már ránézésre is tudni lehessen, milyen jellegű hibáról van szó</u>, a hiba javításakor pedig azonnal azonosítani lehet a hibát és annak aktuális feldolgozási állapotát.
+</p>
+                        </div>
+						
+						<div id="hibaleiras">
+                            <h4>Hibaleírás</h4>
+                            <p>
+<u>A hibaleírások legfontosabb elemei szoftverek esetében:</u>.
+</p>
+<ul>
+								<li>
+								A szoftver, vagy modul neve.
+								</li>			
+								<li>
+								Verziószám, mely lehetőleg tartalmazza a főverzió, a release és ahotfix számát is.
+								</li>								
+								<li>
+								Operációs rendszer neve és verziószáma, amelyen a tesztelés történt.
+								</li>								
+								<li>
+								Speciális rendszerek esetén a tesztrendszer, tesztkörnyezetnéhány főbb konfigurációs paramétere (pl. RAM, CPU stb.)
+								</li>								
+								<li>
+								A hiba 1-2 mondatos leírása.
+								</li>																
+								<li>
+								A teszt eredetileg elvárt, pozitív eredménye.
+								</li>		
+								<li>
+								Az aktuális, hibás eredmény.
+								</li>
+								<li>
+								A hiba reprodukálásához szükséges lépések leírása. Itt törekedni kell az egyszerű, pár szavas leírásokra lépésenként. A lépések számában viszont értelemszerűen nem lehet korlátozás.Amennyiben van hibaüzenet és az nem túl hosszú, a konkrét hibaüzenet szövege.
+								</li>
+								<li>
+								A hiba kihatása, ill. súlyossága.
+								</li>
+								<li>
+								A hiba elkerülésének lehetséges módjai, ha léteznek ilyenek.
+								</li>
+								<li>
+								Csatolmányok. Szoftverek esetében nincs értelme hosszú naplófájlokat közvetlenül bemásolni a hibaleírás szövegébe. Viszont általában lehetőség van arra, hogy csatolmányokat adjunk a hiba leírásához. Ezek lehetnek képernyőfelvételek is, melyek igen hasznosak a programozók számára.
+								</li>								
+							</ul>
+                        </div>
+
+						<div id="fontossag">
+                            <h4>Fontosság (prioritás) és súlyosság</h4>
+                            <p>
+
+<u>A prioritás mindig a hiba kijavításának a sürgősségét jelenti.</u>.
+</p>
+                            <p>
+
+<u>A hiba súlyossága (severity) azt fejezi ki, hogy mekkora mértékű a hiba kihatása.</u>. Egy súlyos hiba jellemzően magasabb prioritású is, de ez nem szükségszerű. Ha egy rendkívül súlyos hiba fellépésének igen kicsi a valószínűsége, akkor annak kijavítása lehet alacsony prioritású. De egy minimális kihatású hiba is lehet kiemelt prioritású, ha nagy eséllyel előfordul, vagy gyorsan kijavítható. Például, ha egy webes alkalmazás nyitó oldalára a céges logó helyett a szórakozott programozó csak egy vázlatot tesz ki, az ugyan nem befolyásolja a szoftver helyes működését, tehát alacsony súlyosságú, mégis gyorsan javítani kell, tehát kiemelt fontosságú.
+</p>
+						       </div>
+						
+								<div id="ervenyesseg">
+                            <h4>Érvényesség</h4>
+                            <p>
+A hiba érvényességét nem feltétlenül a tesztelő dönti el, ugyanis érvényesség alatt azt is érthetjük, hogy a hiba kijavítása egyáltalán meg fog-e történni. Elképzelhető olyan hiba is, mely a való életben soha nem fordulhat elő, bár mesterségesen előidézhető. És ritkán születhet olyan üzleti döntés, mely a hiba kijavítását elutasítja, ha például nincs rá pénz.
+</p>
+					       </div>
+						
+						<div id="hozzarendeles">
+                            <h4>Hozzárendelés meghatározása</h4>
+                            <p>
+Egy hibát annál hamarabb kijavítanak, minél hamarabb kerül a megfelelő személyhez, csapathoz stb. Elsősorban nagyobb vállalatoknál, ahol sok csapat dolgozik egy projekten, a felelősségi körök élesebben meg vannak szabva.
+</p>
+<u>A hozzárendelés megkönnyítéséhez fontos meghatározni, hogy ki a kompetens egy adott hiba esetén.</u> Ez projektenként más és más. Tapasztalat, rákérdezés útján, vagy közvetlen instrukciók (pl. tesztstratégia dokumentuma) alapján lehet eldönteni egy-egy hiba felelősségi körét. Kisebb cégeknél a hibákat összesítik, ahonnan minden fejlesztő kaphat javítási munkát.
+</p>
+					       </div>					
+						
+												<div id="kiertekeles">
+                            <h4>Teszteredmények kiértékelése</h4>
+                            <p>
+Néhány tipikus kiértékelési szempont:
+</p>
+<ul>
+								<li>
+								Hibás teszteredmények száma.
+								</li>			
+								<li>
+								Létrehozott hibajelentések száma.
+								</li>								
+								<li>
+								Hibák csoportosítása, számossága súlyosság szerint.
+								</li>								
+								<li>
+								Sikertelen újrafuttatott tesztek (hibajavítások ellenőrzésekor) száma.
+								</li>								
+								<li>
+								Tesztek futási idejének kimutatása.
+								</li>																
+							</ul>
+					       </div>	
+						
+						<h2 id="chapter7" class="chaptertitle">7. Tesztelés a gyakorlatban</h2>
+													<h4 id="napi_gyakorlat"><b>A szoftvertesztelés napi gyakorlata</b></h4>
+							
+							<p>
+<u>A tesztelők jellemző napi tevékenységei:</u>
+</p>
+<ul>
+								<li>
+								tesztesetek előkészítése, megírása
+								</li>			
+								<li>
+								tesztvégrehajtás előkészítése
+								</li>								
+								<li>
+								tesztfuttatás
+								</li>								
+								<li>
+								tesztkiértékelés, jelentéskészítés
+								</li>								
+								<li>
+								hibák rögzítése
+								</li>																
+								<li>
+								hibajavítások ellenőrzése
+								</li>	
+							</ul>
+							</br>
+									<p>
+A projektek egyedi ritmusának megfelelően, bizonyos időszakokban a tesztesetek tervezése és elkészítése kaphat hangsúlyt, míg máskor a tesztek végrehajtása, vagy éppen a korábban felvett hibák ellenőrzése. Nem ritka, hogy ezek a tevékenységek sokszor átfedésben vannak. Jó és hasznos, ha minden nap vannak legalább csapaton belüli megbeszélések, akár informálisak is. Ez segít minden résztvevőnek abban, hogy ne maradjanak le a többiektől információk tekintetében.
+</p>
+									<p>
+Minden munkafázis fontos része a kommunikáció. A tesztelő kommunikál a programozókkal, a menedzserrel, ritkább esetben az ügyfelekkel is. A tesztek továbbfejlesztése nagyon fontos, sajnos erre kevesebb időszokott jutni a kelleténél, ennek kivitelezése sokszor a tesztelő leleményességétől is függ. Természetesen információkat a tesztelőnek is szolgáltatnia kell a munkájáról. Ennek módja is projektfüggő. Van, ahol napi szintű jelentések kötelezőek, valahol a heti egy alkalom is bőven elég. Az ún. riportolás egy kevésbé kedvelt tevékenység, ám helye van a tesztelési tevékenységek között. Az alkalmazott szoftvereszközök cégenként, sőt projektenként is szinte mindig mások. Ezek használatáról legtöbbször vezető fejlesztők és menedzserek döntenek, ritkábban egy sok tapasztalattal rendelkező tesztelő is beleszólhat ebbe.
+</p>	
+
+							<h4 id="porszivo_teszteles"><b>Hogyan teszteljünk például egy porszívót?</b></h4>
+							<p>
+A válaszhoz szükséges információk:
+</p>
+<ul>
+								<li>
+								Rendelkezésre áll-e használati útmutató (funkcionális specifikáció, felhasználói kézikönyv) a porszívóhoz?
+								</li>			
+								<li>
+								Milyen szőnyegen, felületen kell használnunk a porszívót (tesztkörnyezet)?
+								</li>								
+								<li>
+								Milyen szennyeződést kell felszívnia a porszívónak (tesztadatok)?
+								</li>								
+								<li>
+								Mi a tesztelés célja, mit akarunk a teszteléssel ellenőrizni?
+								</li>								
+								<li>
+								Mikor számít sikeresnek a teszt?
+								</li>																
+						</ul>
+							
+	</br>
+									<p>
+Porszívó tesztelésének a folyamata:
+</p>						
+<ol>
+								<li>
+								Győződjünk meg arról, hogy a porszívó használatra készállapotban van-e!
+								</li>			
+								<li>
+								Ha igen, dugjuk be a csatlakozóját a konnektorba!
+								</li>								
+								<li>
+								Vigyük a porszívót a tisztítandó felülethez!
+								</li>								
+								<li>
+								Állítsuk be a porszívás fokozatát!
+								</li>								
+								<li>
+								Indítsuk el a porszívót!
+								</li>																
+								<li>
+								Mozgassuk a porszívófejet a szennyezett felületen!
+								</li>					
+								<li>
+								Ha felszívtunk minden szennyeződést (a tesztcél teljesül), kapcsoljuk ki a porszívót!
+								</li>						
+						</ol>
+
+									
+	</br>
+									<p>
+Mi várható el egy tesztelőtől? 
+</p>					
+									<p>
+A feladatot először is értelmezni kell. Minden olyaninformációt be kell gyűjtenünk, ami nélkül a tesztelés megtervezése és biztonságos kivitelezése nem lehetséges. A tesztek tervezése során minden feladatot elemi lépések sorozatára kell bontanunk, figyelembe véve azok esetleges egymásra utaltságát. A porszívós példán keresztül valójában minden tesztfeladat modellezhető. Hogy csak két példát említsünk. Negatív teszt lehet annak megkísérlése, hogy egy maroknyi golyóstollat fel tud-e szívni a porszívó és közben mi történik. Terheléses teszt lehet az, ha a porszívót 24 órán keresztül üzemeltetjük.
+</p>					
+							
+					<h4 id="gyakorlati_pelda"><b>Gyakorlati példa: webes felhasználói azonosítás tesztelése</b></h4>
+							
+							
+							
+						<div id="feladat">
+                            <h4>A feladat</h4>
+                            <p>
+Adott egy webes alkalmazás (weboldal), mely felhasználói profilokat is támogat, azaz külön be lehet jelentkezni felhasználói adatokkal. A bejelentkezés a weboldal kezdőoldalán található „Bejelentkezés” linkre történő kattintással kezdeményezhető. Ezután egy dialógusablak jelenik meg, ahol meg lehet adni felhasználói nevet, jelszót, majd a „Belépés” nyomógombra történő kattintással lehet ténylegesen bejelentkezni. A tesztelés célja, hogy manuális teszteléssel ellenőrizzük, hogy a regisztrált felhasználók be tudnak-e jelentkezni a weboldalra, felhasználói azonosítójuk ÉS jelszavuk megadásával. Ilyenkor az „Üdvözöljük, kedves felhasználónk!” üzenet jelenik meg. Ellenben nem regisztrált felhasználók ezt ne tehessék meg, és nem regisztrált felhasználói név, vagy jelszó használata esetén egy hibaüzenetnek kell megjelennie: „A megadott felhasználó nincs regisztrálva!” Amennyiben a felhasználói név, vagy jelszó bármelyike nincsen megadva, „A felhasználói név, vagy jelszó nincsen megadva!” üzenetnek kell megjelennie. A tesztelés a weboldal felületén történik. Mozilla Firefox böngészővel történő tesztelés elegendő.
+</p>
+					       </div>	
+							
+						<div id="a_tervezes">
+                            <h4>A tervezés</h4>
+                            <p>
+A feladat leírását megnézve látszik, hogy alapvetően kétféle eredmény elérésére törekszünk: a sikeres és a sikertelen bejelentkezés működését kell vizsgálnunk, a megadott leírásnak megfelelően. Ehhez ún. pozitív és negatív tesztesetekre lesz szükségünk.
+</p>
+					       </div>			
+
+							<div id="pozitiv">
+                            <h4>Pozitív teszt szcenárió</h4>
+                            <p>
+<u>Pozitív teszt szcenárió:</u> Bejelentkezés érvényes felhasználói név és jelszó párossal.
+</p>
+					       </div>	
+						   
+							<div id="negativ">
+                            <h4>Negatív teszt szcenárió</h4>
+                            <p>
+<u>Negatív teszteseteknél, ahol több lehetséges kombinációt kell kipróbálnunk, ún. döntési mátrixot is készíthetünk. Ez valójában nem más, mint egy táblázat, ami segít átlátni a lehetséges kombinációkat.</u> Ezek segítségével már sokkal könnyebb is megírni teszteseteket. A mátrix soraival azt jelöljük, hogy mely adatot adunk meg a tesztsorán. De jelölhetjük vele azt is, hogy érvényes/érvénytelen bejelentkezési adatokat adunk-e meg.
+</p>
+
+<img src="./img/negativ_teszteset.jpg" alt="negatív teszt" title="negatív teszt">
+
+                            <p>
+A mátrix alapján legalább 6 féle negatív szcenáriót állíthatunk fel:
+</p>
+<ol>
+								<li>
+								Bejelentkezés érvényes felhasználói név megadásával, jelszómegadása nélkül.
+								</li>			
+								<li>
+								Bejelentkezés érvényes jelszóval, felhasználói név megadásanélkül.
+								</li>								
+								<li>
+								Bejelentkezés érvényes felhasználói név és jelszó megadása nélkül.
+A negyedik esetet valójában a fentebb megfogalmazott pozitív tesztesettel már lefedtük, ezért sem kell ismét szerepeltetnük.
+								</li>								
+								<li>
+								Bejelentkezés érvénytelen felhasználói névvel és érvényes jelszóval.
+								</li>								
+								<li>
+								Bejelentkezés érvényes felhasználói névvel és érvénytelen jelszóval.
+								</li>																
+								<li>
+								Bejelentkezés érvénytelen felhasználói névvel és érvénytelen jelszóval.
+								</li>					
+					   		   </ol>
+					       </div>					   
+						   
+						   	<div id="jovahagyas">
+                            <h4>Jóváhagyás</h4>
+                            <p>
+<u>Az elkészített teszteseteket jóvá kell hagyatnunk.</u> Az ellenőrzést végezhetik más tesztelők, de akár a tesztmenedzser is, az üzleti elemző, esetleg az ügyfél bevonásával. Észrevételek esetén módosítani kell a terveket, majd ismét jóváhagyatni az átdolgozottakat. Ha mindenki elégedett, akkor elkezdődhet a tesztesetek kidolgozása.
+</p>
+					       </div>	   
+						   
+							<div id="kivitelezes">
+                            <h4>Kivitelezés</h4>
+                            <p>
+<u>Kivitelezés alatt itt a tesztesetek megírását és a tesztek végrehajtását értjük.</u> AEzek a gyakorlatban időben általában elkülönülő fázisok, itt az egyszerűség kedvéért összevonjuk őket egy lépésbe. A végrehajtáshoz elengedhetetlen, hogy legalább egy érvényes felhasználói név / jelszó párossal rendelkezzünk (tesztadatok fontossága), mivel bizonyos tesztekhez ez kell, mint láttuk. Erre figyelnünk kell. Ha nem rendelkezünk ilyenekkel, jelezni kell, például a tesztmenedzsernek. A fenti tesztszcenáriók közül a negatívokat össze is vonhatjuk egyetlen tesztesetté, ez átláthatóbbá teszi a tesztek majdani végrehajtását.
+</p>
+</br>
+                            <p>
+<u>A pozitív teszteset és az összevont negatív teszteset ismertetése:</u>
+</p>
+</br>
+                            <p>
+                            <p>
+<u>Teszteset neve: <b>Felhasználói bejelentkezés, pozitív:</b></u>
+</p>
+<img src="./img/pozitiv_teszteset1.jpg" alt="pozitív teszt" title="pozitív teszt">
+</br>
+<p>
+<u>Teszteset neve: <b>Felhasználói bejelentkezés, negatív:</b></u>
+</p>
+<img src="./img/pozitiv_teszteset2.jpg" alt="pozitív teszt" title="pozitív teszt">
+<img src="./img/pozitiv_teszteset3.jpg" alt="pozitív teszt" title="pozitív teszt">
+
+                            <p>
+</br>
+<u>A tesztlépéseket egyből beírhatjuk egy tesztelést támogató alkalmazásba.</u>A kidolgozott tesztesetek készen állnak a végrehajtásra, ezt általában valamilyen státusszal jelzik egy tesztelést támogató alkalmazásban. A tesztek végrehajtása a lépések pontos, a leírt sorrendben történő végrehajtását jelenti. Példánkban a sorrend talán nem tűnik fontosnak, a valóságban azonban ez is számíthat. Ez elsősorban a hibák reprodukálása szempontjából fontos. Könnyen elképzelhető, hogy bizonyos rejtett hibák csak műveletek bizonyos sorrendjében hozhatók elő. Előnyös, ha erre az esetleges hibák leírásában külön felhívjuk a figyelmet. Ezért is fontos a következetes végrehajtás, másrészt azért, hogy a tesztelés maga ugyanúgy végrehajtható legyen bárki által.
+</p>
+
+                            <p>
+A tesztlépések „Elvárt eredmény” oszlopához nem írtuk külön, redundánsan mindenhová oda, hogy az adott művelet közben fellépő bármely hiba tolerálható-e vagy sem. Általában nem. Egy adott hiba ugyanis jó eséllyel befolyásolhatja akár a bejelentkezés sikerességét is. Az ehhez hasonló esetekben vagy a tapasztalat, vagy egy tapasztaltabb kolléga tanácsa segíthet. Ha például a weboldalkezdő képernyőjén az egyik statikus szöveg el van csúszva a képernyőn, az nyilván hiba, de nem befolyásolja a felhasználói bejelentkezés sikerességét. Ha viszont a „Bejelentkezés” link annyira el van csúszva, hogy nem is lehet rákattintani a böngészőben, az már egyenesen lehetetlenné teszi a bejelentkezést és a tesztvégrehajtás befejezését. Ebben az esetben a hibát dokumentálni kell, és a teszt blokkolt státuszba kerül: mindaddig nem folytatódhat a tesztvégrehajtás, amíg ez a hiba ki nem lesz javítva. <u>Bármely esetben, amikor a bejelentkezéssel kapcsolatos elvárt eredmény nem teljesül, dokumentálnunk kell a hibát. Amennyiben a teszteset fő célja nem teljesül, maga a teljes teszt is hibásnak minősül.</u>
+</p>
+
+                            <p>
+Felfedezéses tesztelés esetén nem az előre elvárt sorrendben hajtanak végre művelteket, hanem véletlenszerű sorrendben. Ezáltal esetlegesen hibák idézhetők elő Ez egy kötetlenebb tesztelési forma, mely ad hoc cselekvéseken alapul, ezért nem feltétlenül lehet rá előre teszteseteket sem írni.
+</p>
+					       </div>		   
+						<div id="utoelet">
+                            <h4>A tesztek „utóélete”</h4>
+                            <p>
+<u>Egy teszt végrehajtása után egy rövid, formális, vagy kevésbé formális (projektfüggő) összefoglalót kell írni a tesztről</u> melyet röviden, a tényekre alapozva. Amennyiben hibákat találunk, nagyon röviden ezekre is érdemes kitérni a jelentésekben. Amennyiben a hibát a programozóknak sikerült kijavítaniuk, a javítást ismét ellenőriznünk kell, a korábban a hiba által érintett teszt ismételt végrehajtásával.
+</p>
+					       </div>	
+						   
+						       </div>		   
+							   
+						<div id="kreativ_tesztesetek">
+                            <h4>A kreatív tesztesetekről</h4>
+                            <p>
+A tesztelőt a valóságban kötik azok a keretek, melyeket a tesztelés számára szerződésben is külön rögzíteni szoktak. A megrendelő azt szeretné kapni, amiért fizet. A kivitelező pedig legtöbbször csak azt a munkát hajlandó elvégezni, amivel megbízták.
+</p>
+<p>
+<u>A riportjainkban, beszámolóinkban célszerű felhívni a figyelmet az esetlegesen szükséges további tesztek fontosságára</u>, azaz javaslatokat teszünk. Tapasztaltabb tesztelőktől ezt el is várják. Ebben az esetben tesztelőként a lehető legmesszebb elmegyünk, a döntés meghozatala azonban már a menedzserek, ill. az ügyfél kezében lesz.
+</p>
+					       </div>						   
+						   
+							<div id="itthon_es_nagyvilagban">
+                            <h4>Szoftvertesztelés Magyarországon és a nagyvilágban</h4>
+                            <p>
+Minden cég a saját folyamatainak keretei közé igyekszik beszuszakolni a fejlesztési és tesztelési módszertanokat. Közben bizonyos aspektusokra nagyobb, másokra, nos, mondjuk úgy, kevesebb hangsúlyt fektetnek. Egy biztos: nincs két ugyanúgy alkalmazott tesztelési gyakorlat.
+Jelenleg a manuális tesztelésről az automatizált tesztelésre történő átállás a divat. Ez részben természetes és indokolt is, részben viszont a trendek sokszor ész nélküli követésével találkozhatunk. Jó példa erre, hogy sok cég egyenesen a manuális tesztelés automatizált teszteléssel történő kiváltását hangoztatja, ami nyilvánvalóan butaság, hiszen a két teszt nem konkurálhat egymással, lévén két egymást kiegészítő teszttípusról van szó.
+</p>
+<p>
+Egy-egy tesztelési program bevezetése gyakran egy vég nélküli, rosszul menedzselt bukdácsolás, mintsem professzionálisszakmai tevékenység. Rosszabb esetben a vezetők szerint a fejlesztőknek eleve tökéletes munkát kell végezniük, ami azt is jelenti, hogy vannak cégek, ahol a tesztelés szükségességét még bizonygatni kell a vezetőség előtt. Ilyen esetekben nem ritka, hogy torzmunkaköröket hoznak létre, mint például a „fejlesztő-tesztelő”, ami szakmai abszurdum. A tesztelésre helyenként mint menet közben elsajátítható ismeretekre építő, egyszerű betanított munkára tekintenek, mintsem hivatásra <u>A tesztelői munka teljes embert kívánó feladat!</u>
+</p>
+                            <p>
+Külföldön egy kicsit jobb a helyzet. A különbség talán annyi, hogy tőlünk nyugatabbra egyre inkább professzionális, autonóm szakterületté kezd fejlődni a tesztelés, ahol a képzések és a gyakorlat egyaránt nagy súllyal esnek a latba.
+</p>
+					       </div>						   
+
+							<div id="nagygep">
+                            <h4>Tesztelés nagygépes környezetben</h4>
+                            <p>
+A legtöbb nagyvállalat szerverparkokat, szuperszámítógépeket üzemeltet, ahol speciális, szerverekhez kifejlesztett operációsrendszerek is üzemelnek, mint például a Microsoft Windows Server, a UNIX-alapú AIX, Solaris, Linux és társaik. Ezen rendszerek, továbbá különféle adatbázisrendszerek alapvető ismerete mindenképpen szükséges egy tesztelő számára. Ezek egyébként tipikusan multinacionális munkakörnyezetek, ezért az informatikai tudás mellett az idegen nyelvek ismerete is kiemelten fontos. Nem ritka, hogy más országokban dolgozó, más nyelvet beszélő kollégákkal kell együttműködni a tesztelés sikeres lebonyolítása érdekében.
+							</p>
+					       </div>					
+
+						<div id="mobil">
+                            <h4>Tesztelés mobileszközökön</h4>
+                            <p>
+A mobilfejlesztés felfutott üzletág lett ugyan, ám a mobiltesztelés mint olyan korántsem nevezhető egységes, elfogadott gyakorlatnak. Mobilalkalmazásokat tesztelni nem egyenlő pusztán azzal, hogy az ember kézbe vesz egy okostelefont, vagy tabletet és elkezdi nyomkodni. A mobilvilág nagyon heterogén, a kompatibilitás, egységesség biztosítása pedig állandó kihívás a fejlesztők számára. Ráadásul egy üzleti alkalmazás nem önmagában fut, hanem aktív kommunikációt folytat más rendszerekkel is. <u>Egy mobilalkalmazás tesztelése komplex integratív szemléletű feladat.</u> Ebbe a kategóriába sorolhatjuk a weboldalak, webes alkalmazások mobileszközökre optimalizált változatait is. <u>Mobilalkalmazásokat</u> valódi mobileszközökön, vagy <u>asztali számítógépes szimulátor alkalmazásokkal is lehet tesztelni.</u> A tesztmenedzser feladata (és felelőssége) eldönteni, hogy melyiket és milyen mértékben alkalmazzák a tesztelés során. <u>A tesztelést nem elegendő egyetlen típusú eszközön elvégezni, hanem több, különböző teljesítményű és tulajdonságú eszközre (vagy konfigurált szimulátorra) van szükség.</u> A különbözőségeknek elsősorban a képernyők mérete, felbontása, az eszköz processzorának és háttértárolójának a kapacitása tekintetében van jelentőségük. Megemlítjük, hogy <u>a korszerű mobileszközökön szintén fontos kérdés a weboldalak, webes alkalmazások különböző elérhető mobilos böngészőkkel történő tesztelése.</u>
+							</p>
+					       </div>
+					
+						<div id="XML">
+                            <h4>Pár szó az XML formátumról</h4>
+                            <p>
+Az XML formátummal számos esetben találkozhatunk az informatikában, leírásával egész könyvek foglalkoznak. Aki látta már a HTML oldalak forráskódját, annak jó kiindulási alap lehet az XML megértésében a HTML tag-ek szerkezete. <u>Az XML egy szöveges formátum, mely az adatokat szimbolikusnevek hierarchikus szerkezetébe ágyazva tartalmazza.</u> Vegyünk egy egyszerű példát! Példánkban térinformatikai adatok tárolását mutatjuk be. A tárolandó adat legyen egy buszmegálló, melynek pontos földrajzi koordinátája van, például ez: 19.05 és 47.23. Ez XML-ben így is kinézhetne:
+							</p>
+<img src="./img/XML1.jpg" alt="XML formátum" title="XML formátum">							
+							
+		                            <p>
+A koordinátákat a longitude és latitude blokkokban adjuk meg, melyek egyértelműen jelzik, hogy mely koordináták a hosszúsági és melyek a szélességi koordináták. Mindkét koordináta egy nagyobb egység része, a coordinates blokké, ami egy másik blokkba, az objektum blokkba tartozik.
+							</p>		
+		                            <p>
+Az XML tagek rendelkezhetnek tulajdonságokkal (csakúgy, mint a HTML-ben), példánkban az objektum típusát adjuk meg („bus stop”). Az objektumokat szintén nagyobb egységek alá rendelhetjük, például települések, megyék, országok stb. blokkokba. Egy adott szinten pedig több ugyanolyan elem is állhat.
+							</p>								
+							
+					<img src="./img/XML2.jpg" alt="XML formátum" title="XML formátum">				
+					
+							                            <p>
+</br>
+A fenti példában Magyarország Borsod megyéjén belül, „Kisváros” településen egy buszmegálló és egy szupermarket koordinátáit írjuk le. Ez persze csak egy egyszerű példa. A lényeg az, hogy a <> blokkok között értékeket adhatunk meg, melyekhez további tulajdonságokat rendelhetünk. Az XML egyszerű szerkezetével igen bonyolult összefüggéseket írhatunk le és mindezt szöveges formában, azaz virtuálisan platformfüggetlen módon.XML formátumban fájlokat is szokás tárolni, de ebben a formátumban adatok is utazhatnak hálózaton keresztül. Erre rengetegkereskedelmi szolgáltatás épít. 
+							</p>			
+					       </div>			
+
+						<div id="tesztelest_tamogato">
+                            <h4><b>Tesztelést támogató szoftverek a gyakorlatban</b></h4>
+					    </div>	
+
+						<div id="quickteszt">
+                            <h4>Tesztelés a Quickteszt segítségével</h4>
+                            <p><b>A QuickTest bemutatása</b></p>
+							<br>
+							<p>
+							<u>A QuickTest egy tanulásra és demonstrációs célokra használható tesztdokumentációs minirendszer</u>, mely egyelőre böngészőből érhető el. A nyílt forráskódú Flex keretrendszerben készült, böngészős futtatásához Flash player szükséges. A saját készítésű rendszer teljesen ingyenesen hozzáférhető. Mivel működő rendszerről van szó, testreszabott formában akár éles projekteknél is használható. A nyilvános változat néhány egyszerű megkötést tartalmaz, például ki vannak kapcsolva a törlési műveletek. Előnye az ingyenesség mellett egyszerűsége: nagyon könnyen megérthető vele a tesztrendszerek működése, még laikusok számára is. <u>Technikai hátterét Apache webszerver és MySQL adatbázis adja, melyet PHP szkriptek segítségével ér el a rendszer.</u>
+							</p>
+					      <br>
+							<p>Az alkalmazás kezdőképernyőjén érhetjük el a főbb funkciókat:</p>
+							<img src="./img/Quickteszt01.jpg" alt="kezdőképernyő" title="kezdőképernyő">
+							<br>
+							<br>
+							
+							<p><b>Projektek kezelése</b></p>
+							<p>
+							Az alkalmazás kezdőképernyőjén válasszuk ki a 'Manage Projects' lehetőséget! Ekkor a projektek adminisztrációs felületére jutunk, ahol projektjeink listája látható. Kezdetben ez üres. Lehetőségünk van létrehozni, módosítani és törölni projekteket.
+							</p>
+							<img src="./img/Quickteszt02.jpg" alt="Projektek kezelése" title="Projektek kezelése">
+						  <br>
+						  <br>
+							
+							<p>
+							Az egyszerűség kedvéért a projektek egyetlen tulajdonsággal rendelkeznek, ez a nevük. Kattintsunk a 'Create' gombra egy új projekt létrehozásához!
+							</p>
+							<img src="./img/Quickteszt03.jpg" alt="Új projekt létrehozása 1" title="Új projekt létrehozása 1">
+							<br>
+							<br>
+							
+							<p>
+							A 'New Project' oldalon adjunk meg egy nevet, első projektünk neve legyen „Project A”! Kattintsunk a 'Create' gombra! Ekkor visszakerülünk a projektek listáját tartalmazó oldalra. A lista immár tartalmazza új projektünket is.
+							</p>
+							<img src="./img/Quickteszt04.jpg" alt="Új projekt létrehozása 2" title="Új projekt létrehozása 2">
+							<br>
+							<br>
+							
+							<p>
+							Hozzunk létre egy másik projektet is, „Project B” néven! Most már két projekttel rendelkezünk.
+							</p>
+							<img src="./img/Quickteszt05.jpg" alt="Új projekt létrehozása 3" title="Új projekt létrehozása 3">
+							<br>
+							<br>
+							
+							<p>
+							A projektek neveit egyszerűen frissíthetjük. Ehhez először ki kell választanunk a projektet a listánkból, majd az 'Edit' gombra kell kattintanunk. Ekkor frissíthetjük a projekt nevét, amit az 'Update' gombra történő kattintással nyugtázhatunk.
+							</p>
+							<p>
+							Nevezzük át a „Project A” projektet „Project 1”-re, és a „Project B”-t„Project 2”-re!
+							</p>
+							<img src="./img/Quickteszt06.jpg" alt="Új projekt létrehozása 4" title="Új projekt létrehozása 4">
+							<br>
+							<br>
+							
+							<p>
+							Ha mindent jól csináltunk, projektjeink már az új névvel szerepelnek a listában.
+							</p>
+							<img src="./img/Quickteszt07.jpg" alt="Új projekt létrehozása 5" title="Új projekt létrehozása 5">
+							<br>
+							<br>
+							
+							<p>
+							Térjünk vissza a főképernyőre a 'Cancel' gombra történő kattintással!
+							</p>
+							<br>
+							
+							<p><b>Csapattagok kezelése</b></p>
+							<p>
+							Az alkalmazás kezdőképernyőjén válasszuk ki a 'Manage Team' lehetőséget! A csapat adminisztrációs felülete teljesen megegyezik a projektek kezelésével.
+							</p>
+							<img src="./img/Quickteszt08.jpg" alt="Csapat kezelése 1" title="Csapat kezelése 1">
+							<br>
+							<br>
+							
+							<p>
+							A projekteknél megismert módon hozzunk létre két tagot. Példánkban ez legyen a „Tester 1” és „Tester 2”!
+							</p>
+							<img src="./img/Quickteszt09.jpg" alt="Csapat kezelése 2" title="Csapat kezelése 2">
+							<br>
+							<br>
+							
+							<p>
+							Ha elkészültünk, térjünk ismét vissza a kezdőképernyőre!
+							</p>
+							<br>
+							
+							<p><b>Tesztesetek létrehozása</b></p>
+							<p>
+							Most már van két projektünk és két tesztelőnk is. Ezek segítségével már létrehozhatunk teszteseteket és hibajegyeket is. Az előbbivel kezdjük. Ehhez az alkalmazás kezdőképernyőjén válasszuk ki a 'Manage Test Cases' lehetőséget!
+							</p>
+							<img src="./img/Quickteszt10.jpg" alt="Tesztesetek kezelése 1" title="Tesztesetek kezelése 1">
+							<br>
+							<br>
+							
+							<p>
+							Mint látjuk, a tesztesetek kezelőfelülete nagyban hasonlít a projektek és a csapattagok adminisztrációs felületéhez. Azonban három új elemet is találunk itt:
+							</p>
+							<ol>
+								<li>
+									Tesztesetekhez tesztlépéseket adhatunk.
+								</li>
+								<li>
+									Projektekre szűrhetünk tesztesetet.
+								</li>
+								<li>
+									Teszteseteket csapattag-hozzárendelések szerint szűrhetünk.
+								</li>
+							</ol>
+							<br>
+							<p>
+							Az utolsó két lehetőséggel villámgyorsan szűréseket hajthatunk végre teszteseteinken, így mindig csak azokat látjuk, amelyek érdekelnek minket. Erre az ad lehetőséget, hogy minden tesztesethez projektet és egy csapattagot kell rendelnünk.
+							</p>
+							<p>
+							A két szűrőlista tartalma mindig dinamikusan frissül, azaz csakolyan csapattagok és projektek nevei választhatóak ki, melyek garantáltan léteznek.
+							</p>
+							<p>
+							Erről egyszerűen megbizonyosodhatunk, ha például lenyitjuk az 'Assignee' listát. A lista a „Tester 1” és „Tester 2” elemeket tartalmazza, ezeket hoztuk létre korábban. Mindkét szűrőlista tartalmaz egy „All” elemet is, ez az alapbeállítás is egyébként. Kiválasztva az alkalmazás a lista összes elemét figyelembe veszi a tesztesetek kilistázásánál.
+							</p>
+							<img src="./img/Quickteszt11.jpg" alt="Tesztesetek kezelése 2" title="Tesztesetek kezelése 2">
+							<br>
+							<br>
+							
+							<p>
+							A 'Test Steps' gomb csak akkor működik, ha már létrehoztunk legalább egy tesztesetet és ki is választjuk azt a listából. Ezt fogjuk tenni most. Kattintsunk a 'Create' gombra! A megjelenő ablakban meg kell adnunk tesztesetünk nevét, azt, hogy mely projekthez tartozik, melyik csapattaghoz rendeljük és mi a teszteset státusza.
+							</p>
+							<img src="./img/Quickteszt12.jpg" alt="Tesztesetek kezelése 3" title="Tesztesetek kezelése 3">
+							<br>
+							<br>
+							
+							<p>
+							A fenti példában a „Teszteset 1” tesztesetet a „Project 1” projekthez rendeltük, az egyes tesztelőhöz. A teszteset státusza „New”, azaz „Új” lesz. A beállítható státuszok: 
+							</p>
+							<ul>
+								<li>
+									<b>New:</b> Újonnan létrehozott teszteset.
+								</li>
+								<li>
+									<b>In Preparation:</b> A teszteset előkészítése, kidolgozása folyamatban van.
+								</li>
+								<li>
+									<b>Ready:</b> A teszteset készen áll a végrehajtásra
+								</li>
+								<li>
+									<b>In progress:</b> A tesztvégrehajtás folyamatban van.
+								</li>
+								<li>
+									<b>Passed:</b> A tesztvégrehajtás sikeres volt.
+								</li>
+								<li>
+									<b>Failed:</b> A tesztvégrehajtás sikertelen volt.
+								</li>
+								<li>
+									<b>Blocked:</b> A tesztvégrehajtás akadályozva, blokkolva van.
+								</li>
+								<li>
+									<b>Not applicable:</b> A teszt nem hajtható végre. Ennek többnyire valamilyen külső oka lehet.
+								</li>
+							</ul>
+							<br>
+							
+							<p><b>Tesztlépések kezelése</b></p>
+							<p>
+							Ha már létrehoztunk legalább egy tesztesetet, azokhoz tesztlépéseket hozhatunk létre, melyek pontosan leírják, hogy az adott tesztet hogyan kell végrehajtani. Az alábbi képen már két tesztlépést hozzáadtunk tesztesetünkhöz és éppen a harmadikat is készülünk hozzáadni.
+							</p>
+							<img src="./img/Quickteszt13.jpg" alt="Tesztesetek kezelése 4" title="Tesztesetek kezelése 4">
+							<br>
+							<br>
+							
+							<p>
+							Új tesztlépést az 'Add' feliratú gombbal tudunk hozzáadni a tesztesetünkhöz, de ehhez meg kell adnunk a tesztlépés számát ('StepNumber') és a lépés leírását.
+							</p>
+							<p>
+							A már létrehozott tesztesetek az „All test steps” listában találhatóak. A tesztesetek sorrendje a lépések számozásától függ. Egy lépést így áttudunk helyezni pusztán a lépés számának frissítésével is.
+							</p>
+							<p>
+							Egy tesztlépés módosításához előbb ki kell választanunk a listából. Ezután frissíthetjük az 'Update' gombbal, vagy akár törölhetjük is a 'Remove' gombra kattintva.
+							</p>
+							<p>
+							Tesztlépést másolni úgy tudunk, hogy kiválasztjuk, majd az 'Add' gombra kattintunk. Érdemes mindig növekvő számozást alkalmazni a tesztlépésekhez. Jó gyakorlat, ha például eleve tízesével tesszük ezt, így a későbbiekben könnyű beszúrni újabb lépéseket is.
+							</p>
+							<p>
+							Vegyük észre, hogy minden tesztlépéshez egy státuszt rendelhetünk. Ezeket a 'Set status' felirat alatti listában találhatjuk. Egyszerűen csak ki kell választanunk a kívánt státuszt. Az alapértelmezett érték az „In Preparation”.
+							</p>
+							<br>
+							
+							<p>A tesztlépések lehetséges értékei:</p>
+							<ul>
+								<li>
+									<b>In Preparation:</b> A tesztlépés kidolgozása folyamatban van.
+								</li>
+								<li>
+									<b>Ready:</b> A tesztlépés készen áll a végrehajtásra
+								</li>
+								<li>
+									<b>In progress:</b> A tesztlépés éles tesztvégrehajtás alatt van.
+								</li>
+								<li>
+									<b>Passed:</b> A tesztlépés végrehajtása sikeres volt.
+								</li>
+								<li>
+									<b>Failed:</b> A tesztlépés végrehajtása sikertelen volt.
+								</li>
+								<li>
+									<b>Blocked:</b> A tesztlépés végrehajtása akadályozva, blokkolva van.
+								</li>
+								<li>
+									<b>Not applicable:</b> A tesztlépés nem alkalmazható az adott teszt során, valamilyen külső okból.
+								</li>
+							</ul>
+							<br>
+							
+							<p>
+							Első ránézésre feleslegesnek tűnhet az a lehetőség, hogy mind teljes tesztesetekhez, mind egyes tesztlépésekhez külön is beállíthassunk státuszokat.
+							</p>
+							<p>
+							A gyakorlatban ez a lehetőség nagyon is indokolt. Bonyolult tesztek végrehajtása ugyanis sokszor napokig, extrém esetben akár hetekig eltarthat. Ilyenkor bizonyos tesztlépések már kiértékelhetőek, mások viszont még végre sincsenek hajtva. A státuszok segítségével gyorsan képet lehet kapni egy teszteset végrehajtásának állapotáról.
+							</p>
+							<p>
+							Gyakorlásképpen hozzunk létre egy újabb tesztesetet, hozzátartozót tesztlépésekkel!
+							</p>
+							<br>
+							
+							<p><b>Hibajegyek létrehozása</b></p>
+							<p>
+							Amint azt a korábbi fejezetekben már megismertük, a hibajegyek segítségével a tesztelés során talált hibákat szokás rögzíteni. A hibajegyek létrehozásához és kezeléséhez az alkalmazás kezdőképernyőjén válasszuk ki a 'Manage Tickets' lehetőséget!
+							</p>
+							<p>
+							A megjelenő ablak két fő részre osztható. A bal oldalon a hibajegyek listája található. A lista tartalmazza a hibák státuszát, az utolsó módosításuk dátumát és a jegyek címét. Többféle szűrőt is találunk itt, melyekkel a jegyhez rendelt személy, a projekt, a prioritás és a státuszalapján is szűrhetjük a jegyek listáját.
+							</p>
+							<p>
+							Ha kiválasztunk egy jegyet a listából, a jobb oldalon jelennek meg a beállításai. Legfelül a jegy címe, azaz rövid leírása található, alatta pedig a részletes hibaleírás. A jegy projektje, a hozzárendelt személy neve, a prioritás és a státusz is automatikusan beállítódik. A kiválasztott hibajegyet az 'Update' gombbal frissíthetjük, illetve a 'Delete' gombbal törölhetjük.
+							</p>
+							<p>
+							Szintén a jobb oldali beállítások segítségével új hibajegyet is készíthetünk a 'Create' gomb segítségével.
+							</p>
+							<img src="./img/Quickteszt14.jpg" alt="Hibajegyek kezelése 1" title="Hibajegyek kezelése 1">
+							<br>
+							<br>
+							
+							<p>
+							A hibajegyekhez az alábbi prioritásokat rendelhetjük:
+							</p>
+							<ul>
+								<li>
+									<b>LOW:</b> alacsony fontosságú hiba.
+								</li>
+								<li>
+									<b>NORMAL:</b> átlagos fontosságú hiba.
+								</li>
+								<li>
+									<b>HIGH:</b> kiemelt fontosságú hiba.
+								</li>
+							</ul>
+							<br>
+							
+							<p>
+							A lehetséges státuszok:
+							</p>
+							<ul>
+								<li>
+									<b>Open:</b> Új hibajegy, melynek a feldolgozása még nem kezdődött meg.
+								</li>
+								<li>
+									<b>Assigned:</b> A hibajavítás tesztelése folyamatban van.
+								</li>
+								<li>
+									<b>Testing:</b> A hibajavítás tesztelése folyamatban van.
+								</li>
+								<li>
+									<b>Closed:</b> A hibajavítás tesztelése sikeresen befejeződött.
+								</li>
+							</ul>
+							<br>
+							
+							<p><b>Hibajegyek létrehozása</b></p>
+							<p>
+							Az alkalmazás kezdőképernyőjén a 'Show Reports' lehetőséget kiválasztva különféle adatok jeleníthetőek meg, melyek a tesztesetekről és a hibajegyekről mutatnak számszerűsített információkat.
+							</p>
+							<img src="./img/Quickteszt15.jpg" alt="Riportkészítés" title="Riportkészítés">
+							<br>
+							<br>
+							
+							<p>
+							Egy komplex jelentéskészítés ennél többet szokott jelenteni, jellemzően, gyakoriak a grafikonok és sok más összefüggés kimutatása is.
+							</p>
+							<br>
+							
+							<p><b>A QuickTest margójára</b></p>
+							<p>
+							A fenti eszközökkel igen jól menedzselhető munkafolyamatokat alakíthatunk ki és hatékonyan támogathatjuk a tesztelést. A QuickTest egy, a teszteléssel történő ismerkedésre használható eszköz, de éles munkára is átalakítható.
+							</p>
+							<p>
+							A következőkben megismerkedünk két kereskedelmi szoftverrel, melyeket éles tesztelésnél előszeretettel használnak.
+							</p>
+							<p>
+							A QuickTest megismerése nem öncélú volt. Számos módszer vissza fog köszönni ezeknél a szoftvereknél is, ezeket most már sokkal könnyebben értelmezni tudjuk.
+							</p>
+						</div>	
+							
+						<div id="SOAP_UI">
+                            <h4><b>SOAP UI</b></h4>
+					       	
+
+                             <p><b>Letöltés és telepítés</b></p>
+							<br>
+							<p>
+							A SOAP UI ingyenes és kereskedelmi verzióban is elérhető, számos teszt típust és többféle technológiát támogat. A kereskedelmi verziósegítségével egyebek mellett könnyebben állíthatunk össze teszteket, de az ingyenes verzió is tökéletesen alkalmas tesztelésre.
+							</p>
+							<p>
+							A szoftvert az alábbi oldalról érhetjük el és tölthetjük le: <a href="http://www.soapui.org/downloads/soapui/open-source.html" target="_blank" >http://www.soapui.org/downloads/soapui/open-source.html</a> 
+							</p>
+							<img src="./img/SoapUI01.jpg" alt="Soap UI telepítés 1" title="Soap UI telepítés 1">
+							<br>
+							<br>
+							
+							<p>
+							A telepítés egy varázsló segítségével bonyolítható le. A telepítő első oldalán kattintsunk a Next feliratú gombra!
+							</p>
+							<img src="./img/SoapUI02.jpg" alt="Soap UI telepítés 2" title="Soap UI telepítés 2">
+							<br>
+							<br>
+							
+							<p>
+							Ezután a felhasználási feltételek elfogadása és a telepítés helyének kiválasztása következik.
+							</p>
+							<img src="./img/SoapUI03.jpg" alt="Soap UI telepítés 3" title="Soap UI telepítés 3">
+							<img src="./img/SoapUI04.jpg" alt="Soap UI telepítés 4" title="Soap UI telepítés 4">
+							<br>
+							<br>
+							
+							<p>
+							Többféle telepíthető komponenst kiválaszthatunk. Az
+							alapértelmezett beállítások általában megfelelőek a legtöbb feladatra.
+							</p>
+							<img src="./img/SoapUI05.jpg" alt="Soap UI telepítés 4" title="Soap UI telepítés 4">
+							<br>
+							<br>
+							
+							<p>
+							A szoftver oktatóanyagokat is telepít a számítógépre, ezek helyét szintén megadhatjuk.
+							</p>
+							<img src="./img/SoapUI06.jpg" alt="Soap UI telepítés 5" title="Soap UI telepítés 5">
+							<br>
+							<br>
+							
+							<p>
+							A telepítés záró lépései megegyeznek a legtöbb Windows alkalmazás telepítésével.
+							</p>
+							<img src="./img/SoapUI07.jpg" alt="Soap UI telepítés 6" title="Soap UI telepítés 6">
+							<img src="./img/SoapUI08.jpg" alt="Soap UI telepítés 7" title="Soap UI telepítés 7">
+							<img src="./img/SoapUI09.jpg" alt="Soap UI telepítés 8" title="Soap UI telepítés 8">
+							<img src="./img/SoapUI10.jpg" alt="Soap UI telepítés 9" title="Soap UI telepítés 9">
+							<br>
+							<br>
+							
+							<p>
+							A folyamat végén még hírlevélre történő feliratkozási lehetőséggel is találkozhatunk, ez természetesen nem kötelező.
+							</p>
+							<img src="./img/SoapUI11.jpg" alt="Soap UI telepítés 10" title="Soap UI telepítés 10">
+							<br>
+							<br>
+							
+							<p><b>Online tananyagok</b></p>
+							<p>
+							A webes oktatóleckéket az alkalmazás Help – Getting Started menüpontjával is megnyithatjuk.
+							</p>
+							<img src="./img/SoapUI12.jpg" alt="Soap UI Online tananyagok 1" title="Online tananyagok 2">
+							<img src="./img/SoapUI13.jpg" alt="Soap UI Online tananyagok 2" title="Online tananyagok 2">
+							<br>
+							<br>
+							<br>
+							
+							<p><b>Ismerkedés a SOAP UI-val</b></p>
+							<p>
+							Az alkalmazás első indításakor a főképernyőt láthatjuk. Ennek két legfontosabb része a bal oldali navigációs terület, ahol projektjeink szerkezetében lépkedhetünk.
+							Az ablak nagy részét a különböző szerkesztőablakok foglalják el a jobb oldalon. Itt módosíthatunk beállításokat és szerkeszthetjük tesztjeink adatait.
+							</p>
+							<img src="./img/SoapUI14.jpg" alt="Soap UI ismerkedés" title="Soap UI ismerkedés">
+							<br>
+							<br>
+							
+							<p>
+							A File – Preferences menüpont segítségével fontos beállításokat
+							eszközölhetünk. Ezek közül a hálózati beállítások a kiemelten fontosak.
+							</p>
+							<img src="./img/SoapUI15.jpg" alt="Soap UI beállítások 1" title="Soap UI beállítások 1">
+							<img src="./img/SoapUI16.jpg" alt="Soap UI beállítások 2" title="Soap UI beállítások 2">
+							<br>
+						</div>
+							
+						<div id="SOAP_UI_letrehozasa">
+							<h4>SOAP UI létrehozása</h4>
+                            <p>
+							A SOAP UI-ban projekteket hozhatunk létre, melyek számos tesztfeladatot egy egységbe fognak össze. Könyvünkben webszolgáltatások használatán keresztül mutatjuk be a SOAP UI projektek létrehozását és alapszintű használatát. Először is indítsuk el az alkalmazást, majd válasszuk ki a ‘File’ menü ‘New SOAP Project’ menüpontját!
+							</p>
+							<img src="./img/SoapUI17.jpg" alt="SOAP UI létrehozása" title="SOAP UI létrehozása">
+							<br>
+							<br>
+							
+							<p>
+							Ezt követően egy párbeszédablak jelenik meg, melyben nevet adhatunk a projektnek és itt adhatjuk meg a WSDL elérhetőségét is. A projekt neve tetszőleges név lehet.
+							</p>
+							<img src="./img/SoapUI18.jpg" alt="Új SOAP projekt 1" title="Új SOAP projekt 1">
+							<br>
+							<br>
+							
+							<p>
+							A WSDL esetünkben ez lesz: 
+							<a href="http://wsf.cdyne.com/WeatherWS/Weather.asmx?WSDL" target="_blank" >http://wsf.cdyne.com/WeatherWS/Weather.asmx?WSDL</a>
+							Példánkban időjárási adatokkal kapcsolatos webszolgáltatást fogunk meghívni.
+							</p>
+							<img src="./img/SoapUI19.jpg" alt="Új SOAP projekt 2" title="Új SOAP projekt 2">
+							<br>
+							<br>
+							
+							<p>
+							Kattintsunk az OK gombra! A SOAP UI ekkor hosszabb-rövidebb ideig elemzi a szolgáltatás leíróját.
+							</p>
+							<img src="./img/SoapUI20.jpg" alt="Új SOAP projekt 3" title="Új SOAP projekt 3">
+							<br>
+							<br>
+							
+							<p>
+							Ezen információk alapján a projekthez automatikusan hozzáadódnak a rendelkezésre álló szolgáltatások teszthívásai. Esetünkben ezek a GetCityForecastByZIP, GetCityWeatherByZIP és a GetWeatherInformation lesznek.
+							</p>
+							<img src="./img/SoapUI21.jpg" alt="Új SOAP projekt 4" title="Új SOAP projekt 4">
+							<br>
+							<br>
+							
+							<p>
+							Megjegyezzük, hogy WSDL-t nem kötelező megadni projektlétrehozásakor. Ezt bármikor pótolhatjuk az ’Add WSDL’ menüponttal, melyet a projekt nevére történő jobb kattintással felhívott helyi menüből választhatunk ki.
+							</p>
+							<p>
+							Ezzel sikeresen létrehoztuk első SOAP UI projektünket!
+							</p>
+						 </div>			
+						  
+						<div id="finomhangolas">
+                            <h4>A projekt finomhangolása</h4>
+
+							<p>
+							Újdonsült projektünk nevére duplán rákattintva a projekt legfontosabb beállításait megjelenítő ablak jelenik meg. Ehhez hasonlóan, a projekthez tartozó szolgáltatás nevére történő dupla kattintással az adott szolgáltatás beállításait tekinthetjük meg.
+							</p>
+							<img src="./img/SoapUI22.jpg" alt="Projekt finomhangolása 1" title="Projekt finomhangolása 1">
+							<img src="./img/SoapUI23.jpg" alt="Projekt finomhangolása 2" title="Projekt finomhangolása 2">
+							<br>
+						</div>
+						
+						<div id="teszthivas">
+                            <h4>Teszthívás létrehozása a projektben</h4>
+
+							<p>
+							A navigátor ablakban a ConversionRate melletti + jelre kattintva megjelenik egy ’Request1’ listaelem, ami egy automatikusan létrehozott teszthívás.
+							</p>
+							<img src="./img/SoapUI24.jpg" alt="Teszthívás létrehozása 1" title="Teszthívás létrehozása 1">
+							<br>
+							<br>
+						
+							<p>
+							Ilyen teszthívásokat mi magunk is készíthetünk, ehhez kattintsunk a jobb egérgombbal a szolgáltatás nevére, majd válasszuk ki a ’NewRequest’ lehetőséget!
+							Szintén a teszthívások nevére a jobb egérgombbal kattintva többféleműveletet hajthatunk végre ezeken, például át is nevezhetjük azt.
+							</p>
+							<img src="./img/SoapUI25.jpg" alt="Teszthívás létrehozása 2" title="Teszthívás létrehozása 2">
+							<br>
+							<br>
+						</div>
+
+						<div id="teszteset_letrehozasa">
+                            <h4>Teszteset létrehozása és végrehajtása</h4>
+
+							<p>
+							Az előzőekben létrehozott projektünkkel fogunk tovább dolgozni. Kattintsunk duplán az előzőekben létrehozott ’Request1’teszthívásunkra!
+							</p>
+							<img src="./img/SoapUI26.jpg" alt="Teszteset létrehozása és végrehajtása 1" title="Teszteset létrehozása és végrehajtása 1">
+							<br>
+							<br>
+						
+							<p>
+							A megnyíló ablakban már közvetlenül szerkeszthetjük a teszthívásunkat, ami XML formátumú. Mielőtt azonban ezt megtennénk, létrehozunk egy tesztesetet. Ehhez kattintsunk a ‘Híváshozzáadása tesztesethez’ gombra (angolul: ‘Add this request to a TestCase’)!
+							</p>
+							<img src="./img/SoapUI27.jpg" alt="Teszteset létrehozása és végrehajtása 2" title="Teszteset létrehozása és végrehajtása 2">
+							<br>
+							<br>
+							
+							<p>
+							A megjelenő párbeszédablakban a létrehozandó tesztesetünket tároló tesztgyűjteménynek (‘TestSuite’) kell nevet adnunk, ez példánkban “Tesztcsomag” lesz.
+							</p>
+							<img src="./img/SoapUI28.jpg" alt="Teszteset létrehozása és végrehajtása 3" title="Teszteset létrehozása és végrehajtása 3">
+							<br>
+							<br>
+							
+							<p>
+							Az OK-ra kattintva a teszteset nevét is meg kell adnunk, legyen például “Teszteset1”!
+							</p>
+							<img src="./img/SoapUI29.jpg" alt="Teszteset létrehozása és végrehajtása 4" title="Teszteset létrehozása és végrehajtása 4">
+							<br>
+							<br>
+							
+							<p>
+							Az OK-ra kattintva tesztesetünk első tesztlépését hozhatjuk létre. Ez esetünkben egyetlen lépés lesz, melynek a „Teszthívás” nevet adjuk most.
+							</p>
+							<img src="./img/SoapUI30.jpg" alt="Teszteset létrehozása és végrehajtása 5" title="Teszteset létrehozása és végrehajtása 5">
+							<br>
+							<br>
+							
+							<p>
+							Ha mindent megadtunk, a SOAP UI felületén ehhez hasonló képet kell kapnunk:
+							</p>
+							<img src="./img/SoapUI31.jpg" alt="Teszteset létrehozása és végrehajtása 6" title="Teszteset létrehozása és végrehajtása 6">
+							<br>
+							<br>
+							
+							p>
+							Látható, hogy projektünk szerkezetében egy új logikai egység jött létre, ’Tesztcsomag’ néven, mely tartalmazza a ’Teszteset1’tesztesetünket és a ’Teszthívás’ nevű tesztlépést is.
+							A tesztesetünk részleteivel a jobb oldalon egy újabb ablak is megnyílt.
+						</div>
+
+						<div id="teszt_futtatasa">
+                            <h4>Teszt futtatása</h4>
+
+							<p>
+							Egy meglévő tesztesetet a gombra történő kattintással tudunk lefuttatni. Ezt akár azonnal meg is tehetjük. Pár másodperc után a teszt lefut.
+							</p>
+							<p>
+							A ’FINISHED’, azaz „végrehajtva” felirat zöld lesz, azaz sikeres a végrehajtás. Ez nem is csoda, hiszen nem is adtunk meg teszteredményre vonatkozó feltételt, így mindenképpen sikeres tesztről beszélhetünk. A feltételek megadásának módját hamarosan megismerjük, de előbb nézzük meg, mi történt a háttérben!
+							</p>
+							<img src="./img/SoapUI33.jpg" alt="Teszt futtatása 1" title="Teszt futtatása 1">
+							<img src="./img/SoapUI34.jpg" alt="Teszt futtatása 2" title="Teszt futtatása 2">
+							<br>
+							<br>
+						
+							<p>
+							Kattintsunk duplán a Teszthívás-ra a bal oldali navigációs ablakban! Így megjelenik a SOAP UI által a webszolgáltatást futtatószerverre küldött üzenet és a válasz is, mert a teszt futtatásával ez is automatikusan megtörténik. A jobb oldali mezőben látható a szerver válasza.
+							</p>
+							<p>
+							Ezt a kérést küldtük el a szervernek:
+							</p>
+							<img src="./img/SoapUI35.jpg" alt="Teszt futtatása 3" title="Teszt futtatása 3">
+							<br>
+							<br>
+							
+							<p>
+							A válasz pedig ez lett (a kapott XML formátumú üzenetet rövidítve közöljük):
+							</p>
+							<img src="./img/SoapUI35.jpg" alt="Teszt futtatása 4" title="Teszt futtatása 4">
+							<br>
+							<br>
+							
+							<p>
+							A válasz időjárási információkat tartalmaz, szolgáltatás hívásunkkal ezt kértük le. A szolgáltatás a GetWeatherInformation volt.
+							</p>
+						</div>
+
+						<div id="hivasok_kezi_modositasa">
+                            <h4>Hívások kézi módosítása</h4>
+
+							<p>
+							Az előző példában a szolgáltatás hívása egy alapértelmezett XML kérésen keresztül történt. A valóságban számos paraméter is szerepelhet az XML-ben.
+							</p>
+							<p>
+							Következő példánkban a GetCityWeatherByZIP hívást fogjuk kézzel módosítani. A SOAP UI bal oldali navigációs sávjában keressük meg ezt a szolgáltatást, majd dupla kattintással nyissuk mega szolgáltatáshívás (request) szerkesztő ablakát! Az XML kérés ehhez hasonló lesz:
+							</p>
+							<img src="./img/SoapUI36.jpg" alt="Hívások kézi módosítása 1" title="Hívások kézi módosítása 1">
+							<br>
+							<br>
+						
+							<p>
+							A szolgáltatást így meghívva az alábbi választ kapjuk.
+							</p>
+							<img src="./img/SoapUI37.jpg" alt="Hívások kézi módosítása 2" title="Hívások kézi módosítása 2">
+							<br>
+							<br>
+							
+							<p>
+							A válasz SUCCES node-jának értéke FALSE. Ez azt jelenti, hogy a hívás nem volt sikeres. A hiba szöveges formában is meg van adva: „Invalid ZIP”, azaz érvénytelen irányítószámot adtunk meg. Ez igazis, hiszen a kérésünkben ennek értéke „?” volt.
+							Megjegyezzük, hogy a hibákat más XML szerkezetekben is visszakaphatjuk, például „faultID”, „faultstring” node-ok közé zárva.
+							</p>
+							<p>
+							Most megismételjük a hívást, de ezúttal érvényes irányítószámot adunk meg. Ez 10007 lesz, ami New York-hoz tartozik. Tehát:
+							</p>
+							<img src="./img/SoapUI38.jpg" alt="Hívások kézi módosítása 3" title="Hívások kézi módosítása 3">
+							<br>
+							<br>
+							
+							<p>
+							A kérésre adott válasz ezúttal eredményes lesz, számos, New Yorkkal kapcsolatos időjárási adatot kapunk vissza a válaszban:
+							</p>
+							<p>
+							Most megismételjük a hívást, de ezúttal érvényes irányítószámot adunk meg. Ez 10007 lesz, ami New York-hoz tartozik. Tehát:
+							</p>
+							<img src="./img/SoapUI39.jpg" alt="Hívások kézi módosítása 4" title="Hívások kézi módosítása 4">
+							<br>
+							<br>
+						</div>
+						
+						<div id="teszteredmenyek_kiertekelese">
+                            <h4>Teszteredmények kiértékelése</h4>
+
+							<p>
+							A tesztek futása nem csak sikeres-sikertelen eredmények megállapításával végződhet. A SOAP UI lehetőséget kínál arra, hogy a válaszokat különböző szempontok alapján kiértékeljük. Ez lehet tartalmi, vagy formai kiértékelés is.
+							</p>
+							<p>
+							Utóbbi lehet például a válaszidő elemzése. Erre mutatunk be egy utolsó példát. A navigációs sávban keressük meg a tesztlépések között a„Teszthívás”-t és dupla kattintással nyissuk meg!
+							</p>
+							<p>
+							A kérés indítására használható gomb mellett kattintsunk a „Feltétel hozzáadása” gombra, ami egy zöld plusz jel. A feltétel a SOAP UI terminológiájában az ún. assertion.
+							</p>
+							<img src="./img/SoapUI40.jpg" alt="Teszteredmények kiértékelése 1" title="Teszteredmények kiértékelése 1">
+							<br>
+							<br>
+						
+							<p>
+							Megjelenik egy párbeszédablak, melyben különböző feltételeket adhatunk meg.
+							</p>
+							<img src="./img/SoapUI41.jpg" alt="Teszteredmények kiértékelése 2" title="Teszteredmények kiértékelése 2">
+							<br>
+							<br>
+							
+							<p>
+							Válasszuk ki az ‘SLA’-t, majd a jobb oldalon a ’Response SLA’ elemet! Ezt követően a párbeszédablakban kattintsunk az ’Add’ gombra!
+							</p>
+							<p>
+							Ezután meg kell adnunk a válaszidő felső határát, ami esetünkben legyen 500 ezredmásodperc, azaz fél másodperc.
+							</p>
+							<img src="./img/SoapUI42.jpg" alt="Teszteredmények kiértékelése 3" title="Teszteredmények kiértékelése 3">
+							<br>
+							<br>
+							
+							<p>
+							Nyissuk meg tesztesetünket, majd futtassuk le azt! A teszt ezúttal sikertelen lesz, mert ahogyan a lenti képen is látható, a válasz 1347 ezredmásodpercig tartott, ami jóval több, mint a megadott 500 ezredmásodperc.
+							</p>
+							<img src="./img/SoapUI43.jpg" alt="Teszteredmények kiértékelése 4" title="Teszteredmények kiértékelése 4">
+							<br>
+							<br>
+
+							<p>
+							Vegyük észre, hogy a „Teszthívás” elemünk színe szintén pirosra változott! Válasszuk ki ezt az elemet, majd nyissuk meg!
+							</p>
+							<img src="./img/SoapUI44.jpg" alt="Teszteredmények kiértékelése 5" title="Teszteredmények kiértékelése 5">
+							<br>
+							<br>
+							
+							<p>
+							A kérés ablakának alsó részén azt olvashatjuk, hogy a szerverválasza valid, azaz érvényes volt, ám a teszt feltétele nem teljesült.
+							</p>
+							<p>
+							Kattintsunk duplán a „Response SLA - FAILED” sorra és adjunkmeg egy nagyobb értéket, mondjuk 1500 másodpercet!
+							</p>
+							<img src="./img/SoapUI45.jpg" alt="Teszteredmények kiértékelése 6" title="Teszteredmények kiértékelése 6">
+							<br>
+							<br>
+							
+							<p>
+							Természetesen a teszt feltételének módosítása éles teszt során nem változtatna semmit azon a tényen, hogy a szerver válasza alacsonyabb az elvártnál. Példáinkban csupán a SOAP UI alapszintű megismertetése volt a cél.
+							</p>
+							<img src="./img/SoapUI46.jpg" alt="Teszteredmények kiértékelése 7" title="Teszteredmények kiértékelése 7">
+						</div>
+
+						<div id="JIRA">
+                            <h4>JIRA</h4>
+                            <p>
+							<u>A JIRA napjaink egyik legelterjedtebb folyamatmenedzselő rendszere. Támogatja fejlesztési, tesztelési folyamatok tervezését, nyomonkövetését és kiértékelését is.</u>
+							A rendszer támogatja továbbá a felhasználói profilokat is, így egyprojekt minden szintjének résztvevője testreszabott módon férhethozzá a projekttel kapcsolatos adataihoz.
+							</p>
+							<p>
+							Az alkalmazás nagymértékben testreszabható, így minden projekt a saját szájíze szerint alakíthatja a működését és bizonyos keretek közötta megjelenését is. A JIRA bővíthető is, számos beépülő modult fejlesztenek hozzá.
+							</p>
+							<p>
+							Mindezek mellett <u>általános jegykezelő és tesztmenedzsment rendszerként is használható</u>. Hazánkban sok nagyvállalat és kisebbvállalkozás is előszeretettel használja, ezért nagy valószínűséggel találkozhatnak vele a magyarországi tesztelők is.
+							</p>
+							
+							<p><b>Elérhetőség</b></p>
+							<p>
+							A JIRA egy online, alapvetően webes felületre optimalizált alkalmazás. Egy fizetős szoftverről van szó, ám a rendszer alapfunkcióit bárki kipróbálhatja, ugyanis magának a JIRA-nak a fejlesztését is JIRA-val támogatják, sőt hibákat is egy e célból létrehozott nyilvános rendszeren keresztül lehet bejelenteni.
+							</p>
+							<p>
+							Ennek az elérhetősége: <a href="https://jira.atlassian.com" target="_blank" >https://jira.atlassian.com</a>   
+							</p>
+							
+							<p><b>Ismerkedés a kezelőfelülettel</b></p>
+							<p>
+							A rendszer nyitóképernyője a Dashboard, mely gyakran tartalmaz aktuális információkat az aktuális, futó projektről.
+							</p>
+							<img src="./img/JIRA01.jpg" alt="JIRA Dashboard" title="JIRA Dashboard">
+							<br>
+							<br>
+
+							<p>
+							A nyitóoldal tartalma is testreszabható egyébként, előszeretettel jelenítik meg itt a felhasználók legutóbbi aktivitásait is, amit a felületre bejelentkezve mindenki láthat. A JIRA rendelkezik egy főmenüvel, melynek legfontosabb elem-ei a bal felső sarokban találhatóak:
+							</p>
+							<img src="./img/JIRA02.jpg" alt="JIRA főmenü" title="JIRA főmenü">
+							<br>
+							<br>
+
+							<p>
+							A három legfontosabb, mindennap használatos menüpont a következő:
+							</p>
+							<p>
+							A <b>Dashboards</b> menüponttal különféle összefoglaló, áttekintőoldalakra juthatunk. Ez projektfüggő.
+							</p>
+							<p>
+							A <b>Projects</b> alatt több projekt is szerepelhet, attól függően, hogy a felhasználó milyen más projektekhez van még hozzárendelve.
+							</p>
+							<p>
+							Az <b>Issues</b> menüpont a hibajegyek kezeléséhez enged hozzáférést. Itt kereshetünk és hozhatunk létre hibajegyeket is.
+							</p>
+							<img src="./img/JIRA03.jpg" alt="JIRA szimbólumsor" title="JIRA szimbólumsor">
+							<br>
+							<br>
+
+							<p>
+							A Projects egyik menüpontjára kattintva megjelenik egy vertikális szimbólumsor is a bal oldalon. Ezzel további, általános oldalra juthatunk, például a projektriportokhoz. A Reports szimbólumot kiválasztva különböző, a projekt adataiból kinyert grafikont, összefoglalót tekinthetünk meg. A riportok tartalma természetesen testreszabható.
+							</p>
+							<img src="./img/JIRA04.jpg" alt="JIRA riportok" title="JIRA riportok">
+							<br>
+							<br>
+							
+							<p><b>Jegykezelés</b></p>
+							<p>
+							Talán a jegyek kezelése az a vezérfonal, ami köré a JIRA többi folyamata is felépül, ezért a jegyek kezelése alapfontosságú készségnek számít. A jegyek nem csak hibajegyek lehetnek, hanem bizonyos feladatokat is leírhatnak. A lényeg minden esetben az, hogy egy bizonyos munka minden munkafázisban végigkövethető legyen.
+							</p>
+							<p>
+							Az ‘Issues’ – ‘Search for issues’ menüpontot kiválasztva az aktuális projekt összes jegyének listája megjelenik.
+							</p>
+							<img src="./img/JIRA05.jpg" alt="JIRA jegyek listája" title="JIRA jegyek listája">
+							<br>
+							<br>
+
+							<p>
+							A lista tulajdonképpen nem más, mint a JIRA adatbázisának a megjelenítése. A lista oszlopainak fejlécei vannak, melyekre rákattintva rendezéseket végezhetünk a listában. Az oszlopok láthatósága testreszabható, és meglehetősen sok van belőlük.
+							</p>
+							<img src="./img/JIRA06.jpg" alt="JIRA oszlop fejlécek" title="JIRA oszlop fejlécek">
+							<br>
+							<br>
+
+							<p>
+							A lista nézet kiváló, ha gyors áttekintésre van szükségünk a feldolgozásra váró jegyekről, ám részletek itt nem jelennek meg. A jegyek lista nézetét az ablak jobb felső részében elhelyezkedő beállítás szimbólumra kattintva válthatjuk át részlet nézetre.
+							</p>
+							<img src="./img/JIRA07.jpg" alt="JIRA jegyek lista nézete" title="JIRA jegyek lista nézete">
+							<img src="./img/JIRA08.jpg" alt="JIRA jegyek elrendezése" title="JIRA jegyek elrendezése">
+							<br>
+							<br>
+
+							<p>
+							Ebben az elrendezésben jóval több minden látszik. Bal oldalon a hibajegyek azonosítója, címe látható egy listában, a jobb oldalon pedig minden adat elolvasható, amit a hiba bejelentője megadott.
+							</p>
+							<img src="./img/JIRA09.jpg" alt="JIRA jegyek részletek" title="JIRA jegyek részletek">
+							<br>
+							<br>
+
+							<p>
+							Ha a felhasználó jogosultsága megengedi, a jegyek tartalma azonnal módosítható is. Fejlesztők, illetve tesztelők általában rendelkeznek ilyen jogosultsággal.
+							</p>
+							
+							
+							<p><b>Keresések</b></p>
+							<p>
+							Az egyszerű kulcsszavas keresések mellett nagyon fontos, hogy a projekt résztvevői (így a tesztelők is), komplexebb kereséseket is végre tudjanak hajtani a JIRA-ban rögzített elemeken.
+							</p>
+							<p>
+							A legegyszerűbb keresés a kulcsszavas keresés. A keresett kulcsszót a „Contains text” szövegmezőbe írhatjuk be.
+							</p>
+							<img src="./img/JIRA10.jpg" alt="JIRA keresés" title="JIRA keresés">
+							<br>
+							<br>
+
+							<p>
+							A nagyító ikonra kattintva a keresés már így is elindítható, de a ’More’ gombra kattintva megadhatjuk azt is, hogy mely mezőkre hajtódjon végre a keresés.
+							</p>
+							<p>
+							Az ‘Advanced’ linkre kattintva még összetettebb kereséseket végezhetünk. Ilyenkor egy hosszabb szöveges beviteli mező jelenik meg, ahová mezőneveket és logikai kifejezéseket is megadhatunk.
+							</p>
+							<p>
+							A beviteli mező gépelés közben intelligens javaslatokat tesz a még gyorsabb bevitel érdekében. Egy kifejezés megadása MEZŐNÉV EGYEZŐSÉGJEL ÉRTÉK hármassal történik, például: Name = Lajos.
+							</p>
+							<p>
+							A kifejezések között kapcsolatokat is megadhatunk, ez általában ÉS szokott lenni (AND). Íly módon több kifejezést is összekapcsolhatunk. Az alábbi példában a Documentation típusú jegyeket keressük, de csak azokat, melyek egy bizonyos priorítással rendelkeznek. Ehhez az AND kulcsszót használjuk.
+							</p>
+							<img src="./img/JIRA11.jpg" alt="JIRA keresések elmentése" title="JIRA keresések elmentése">
+							<br>
+							<br>
+
+							<p>
+							A JIRA lehetőséget kínál arra, hogy kereséseinket névvel ellátva, profilunk adataként eltároljuk. Ehhez természetesen előbb be kelljelentkeznünk. A keresések találati listája ugyanolyan felépítésű, mint a fentebb tárgyalt listák. Ugyanarról a listáról van szó, csak ez keresésünk eredményeit tartalmazza.
+							</p>
+						</div>	
+						
+						<div id="tovabbi_szoftverek">
+                            <h4><b>További szoftverek</b></h4>
+                            <p>
+							Óriási mennyiségű, ingyenes és kereskedelmi szoftver férhető hozzá manapság, melyekkel a szoftvertesztelés teljes munkafolyamata lefedhető. Hogy ezek közül melyiket használják egy cégnél, az részben szakmai, részben üzleti-pénzügyi döntés. Ez utóbbinak köszönhetően szinte mindenhol a kész megoldásokat preferálják. Egyedi fejlesztésekkel is lehet találkozni, de ezek igen ritkák.
+							</p>
+					    </div>		
+						
+						<div id="apache_jmeter">
+                            <a href="./pdf/apache_jmeter.pdf" target=_blank">Apache JMeter pdf megnyitása teljes ablakban</a>
+							<h4><b>Apache JMeter</b></h4>
+							<p align="center"><embed width="100%" height="900px" style="background-color:inherit" src="./pdf/apache_jmeter.pdf"></p>
+    					</div>		
+							
+						<div id="dokumentacios_mintak">
+                            <h4><b>Dokumentációs minták</b></h4>
+					    </div>	
+							
+						<div id="tesztesetek_megfogalmazasa">
+                            <h4>Tesztesetek megfogalmazása</h4>
+                            <p>
+							Példánkban egy egyszerű dokumentumkezelő alkalmazás egyik elképzelt tesztjének pár lépését mutatjuk be, minta jelleggel. Különösen kezdő tesztelők számára nagyon fontos, hogy legyen egy kézzelfogható minta, ami vezérfonal a munkájukhoz. A tesztesetek neve utaljon a teszt tárgyára! Ha komplexebb tesztekről van szó, érdemes a teszteket nevükben is csoportosítani, mint például: Navigáció, Beolvasás, Nyomtatás stb.
+							</p>
+					       <p>
+						   	Példa: <b>Teszteset_Navigáció_#1</b>
+							</p>
+						   <p>
+							Maguk a tesztlépések több logikai egységből is állhatnak. A Leírás tartalmazza a tesztelő által végrehajtandó tevékenységet. Használunk egy Megjegyzés oszlopot is, mely elsősorban a tesztelő számára szolgál hasznos kiegészítő információkkal a tesztvégrehajtáshoz. Az elvárt eredmény leírásának félreérthetetlenül egyértelműen tartalmaznia kell annak a leírását, hogy mikor számít sikeresnek a teszt.Példánkban számozva szerepel mindegyik tesztlépés.
+							</p>
+							<img src="./img/Teszteset01.jpg" alt="teszteset leírása" title="teszteset leírása">
+							<br>
+							<br>
+					   </div>		
+							
+						<div id="teszteredmenyek_dokumentalasa">
+                            <h4>Teszteredmények dokumentálása</h4>
+                            <p>
+							A teszteredmények dokumentálását mindig adott projektre kell szabni. Éppen ezért csak gondolatébresztőként mutatunk be egy egyszerű táblázatos szerkezetet, mely jó kiindulási alap lehet teszteredmények rögzítésére. Ha e célból rendelkezésre áll külön szoftver, akkor mindenképpen azt kell használni. Egy dolgot nem tehetünk meg: a teszteredményeket nem dokumentálni.
+							</p>
+							<img src="./img/Teszteset02.jpg" alt="teszteredmények dokumentálása" title="teszteredmények dokumentálása">
+							<br>
+							<br>
+					   </div>			
+							
+<h2 id="chapter8" class="chaptertitle">8. Minőségbiztosítási receptek</h2>
+							<p>
+							Egy jó tesztelő nem csupán végrehajtja a rá bízott feladatokat, hanem képes javaslatokat is tenni a szoftver minőségének növelésére, konkrét folyamatok javítására. Itt elsősorban a minőségbiztosítási folyamatokra kell gondolni.
+							</p>
+							<p>
+							Az alábbiakban összeállítottunk egy javaslat-, vagy sokkal inkább receptcsomagot, melyet számos vállalkozás, cég használhat a tesztelés és a minőségbiztosítás javítására. Minden esetben egy hibás, vagy alacsony hatékonyságú kiindulási helyzetet veszünk alapul, majd javaslatot is megfogalmazunk a helyzet javítására.
+							<p>
+							</p>
+							A leírások között sok tesztelő, esetleg fejlesztő a saját munkahelyén tapasztalható hiányosságokat is találhat. Ez a fejezet bátorítani is kívánja őket abban, hogy javítsanak a munkahelyükön a minőségbiztosítási folyamatokon.
+							</p>
+							
+						<div id="teszteles_hianya">
+                            <h4>A tesztelés hiánya</h4>
+                            <p>
+							Elsősorban kisebb cégeknél közkedvelt megoldás fejlesztőkre bízni a tesztelést. Ez a gyakorlat a fejlesztők idejét pazarolja, másrészt pedig igen kis hatékonyságú tesztelést tesz csak lehetővé, részben az időhiány, részben pedig a szakmai képzettség, gyakorlat hiányából fakadóan.
+							</p>
+							<p><b>Javaslat</b></p>
+							<p>
+							Lehetőleg minél hamarabb hivatásos, de mindenképpen elfogulatlan, főállású tesztelőket kell alkalmazni. Minél tovább elodázódik ez a döntés, annál költségesebb és lassabb lesz a szoftver minőségét elfogadható szintre hozni.
+							</p>
+					    </div>	
+							
+						<div id="tervezes_elmaradasa">
+                            <h4>A teszt tervezésének elmaradása</h4>
+                            <p>
+							A tesztek tervezésére nincsen idő elkülönítve, a tesztelőknek azonnal el kell kezdeniük az új funkciók tesztelését. Ezt gyakran a tesztelők már meglévő tapasztalatával indokolják.
+							</p>
+							<p><b>Javaslat</b></p>
+							<p>
+							A tervezési fázis nem csupán az ismert funkciók teszteléséről, hanem a nem-funkcionális és járulékos előfeltételekről, kockázatokról is lerántja a leplet. A teszteket a fejlesztési munkák megkezdése előtt el kell kezdeni tervezni, a tesztelőket, vagy legalább a tesztmenedzsert be kell vonni a kapcsolódó megbeszélésekbe.
+							</p>
+					    </div>	
+							
+						<div id="teszteles_kulonvalasztas">
+                            <h4>Tesztelés és fejlesztés különválasztása</h4>
+                            <p>
+							A fejlesztői oldal már létszámában is többségben van. Gyakorta előfordul, hogy a programozók, vagy a fejlesztések vezetője egyik másik tesztnek nagyobb fontosságot tulajdonít, míg mások végrehajtását igyekszik gátolni, esetleg a talált hibák „elkendőzésére” tesz kísérletet.
+							</p>
+							<p><b>Javaslat</b></p>
+							<p>
+							A tesztelés a fejlesztés része, de autonóm tevékenység kell, hogy legyen. Mindenféle befolyásolás súlyosan veszélyeztetheti a szoftver minőségét. Ennek a veszélynek az elhárítását legtöbbször a tesztmenedzser hivatott biztosítani. Hiányában a tesztelők igen kiszolgáltatott helyzetbe kerülhetnek.
+							</p>
+					    </div>	
+					    	
+						<div id="menedzsment_hianya">
+                            <h4>Tesztmenedzsment hiánya</h4>
+                            <p>
+							Azon cégek, melyek már alkalmaznak tesztelőket, gyakran igyekeznek „házon belül”, szakember nélkül megoldani a tesztelés koordinálását. Nem ritka, hogy egy tapasztalt fejlesztőre bízzák ezt. Ez legjobb esetben is hiányos eredményekhez vezet.
+							</p>
+							<p><b>Javaslat</b></p>
+							<p>
+							A tesztelés menedzselt tevékenység kell, hogy legyen. Erre külön tesztmenedzsereket, esetleg ún. SCRUM mastereket alkalmaznak, akik elkötelezettek a tesztelés iránt és tesztelői oldalról közelítenek a projektekhez.
+							</p>
+					    </div>
+						
+						<div id="tesztcelok_hianya">
+                            <h4>Tesztcélok hiánya</h4>
+                            <p>
+							A tesztelők a feladataikról csak annyi információt kapnak, hogy „tesztelni kell az új verziót”.
+							</p>
+							<p><b>Javaslat</b></p>
+							<p>
+							Teljeskörűen egyetlen szoftvert sem lehet soha letesztelni, ezért fontos, hogy a tesztelés célja és tárgya definiálva legyen. Ez ideális esetben írásban is rendelkezésre áll. A tesztcélok meghatározása a tesztmenedzser feladata.
+							</p>
+					    </div>
+						
+						<div id="tesztkornyezet_hianya">
+                            <h4>Dedikált tesztkörnyezet hiánya</h4>
+                            <p>
+							A kizárólag tesztre használt számítógépek gondolatát tapasztalatlan vezetők általában kétkedéssel kezelik. Nem ritkák az ehhez hasonló reakciók: „Miért nem jó egy kiszuperált gép?”, „Használjátok az egyik fejlesztői számítógépet, ha éppen nincsen használatban!”, „Ez túl drága mulatság nekünk, nem engedhetjük meg magunknak!”
+							</p>
+							<p><b>Javaslat</b></p>
+							<p>
+							Egy tesztelésre nem felkészített számítógép nem megfelelő teszteredményeket fog szolgáltatni. Valójában egy rossz tesztkörnyezet az igazi pénzpocsékolás, ami ráadásul be is csap mindenkit, így egy dedikált tesztgéppel valójában pénzt lehet spórolni.
+							</p>
+					    </div>
+						
+						<div id="tesztadatok_hianya">
+                            <h4>Tesztadatok hiánya</h4>
+                            <p>
+							Tapasztalt tesztelők sokat tudnának mesélni arról, hogy mennyire komolytalanul kezelik egyik-másik fejlesztési projektben a tesztadatokat, és ez mekkora többletmunkát tud utólag eredményezni. Némi fanyar iróniával úgy is mondhatnánk, hogy a tesztelőknek gyakran bűvészmutatványokat kell bemutatniuk: szinte a semmiből valamilyen eredményt kell kicsiholniuk.
+							</p>
+							<p><b>Javaslat</b></p>
+							<p>
+							Egy lelkiismeretes tesztelőt már azzal is boldoggá lehet tenni, ha pontosan leírják, hogy milyen adatokat kell használnia. Még jobb, ha minták is rendelkezésre állnak. A legjobb azonban, ha mindig naprakész elvárások és leírások állnak rendelkezésre a tesztadatokat illetően. Ezek elkészítésében természetesen a tesztelők maguk is nagy örömmel részt vesznek.
+							</p>
+					    </div>
+						
+						<div id="dokumentacio_hianya">
+                            <h4>Dokumentáció hiánya</h4>
+                            <p>
+							A fejlesztett szoftver kézikönyve, specifikációja hiányos, elavult, vagy ad absurdum nem létezik.
+							</p>
+							<p><b>Javaslat</b></p>
+							<p>
+							A tesztelés végrehajtása során egy elvárt eredményt hasonlítunk össze aktuális eredményekkel. Fontos tehát, hogy egyértelműen rögzítsük az elvárt eredményeket (hogy hogyan kell működnie az alkalmazásnak), különben a tesztelés nem több puszta erőlködésnél és színjátéknál.
+							</p>
+					    </div>
+						
+						<div id="dokumentalas_hianya">
+                            <h4>Fejlesztések dokumentálásának hiánya</h4>
+                            <p>
+							A fejlesztések tervei és megvalósításai időben nem visszakereshetőek.
+							</p>
+							<p><b>Javaslat</b></p>
+							<p>
+							Egy-egy hiba keresésénél rendkívül fontossá válhat annak ismerete, hogy egy adott fejlesztés mikor került bele a szoftverbe. Eztvalamilyen formában, visszakereshető módon dokumentálni kell.
+							</p>
+					    </div>
+						
+						<div id="manualis_kulonvalasztas">
+                            <h4>Manuális és funkcionális tesztelés különválasztása</h4>
+                            <p>
+							A manuális tesztelést és az automata tesztek karbantartását, végrehajtását ugyanarra a tesztelőre bízzák.
+							</p>
+							<p><b>Javaslat</b></p>
+							<p>
+							A manuális tesztelés közvetlen céljai és feltételei merőben különbözőek lehetnek és mindkettő teljes embert kíván. A legrosszabb kombináció az 50-50 százalékos felosztás, ebben az esetben ugyanis a tesztelőnek esélye sincsen arra, hogy bármelyik területtel mélyebben foglalkozzon.
+							</p>
+					    </div>
+						
+						<div id="nem_megfelelo_dokumentalas">
+                            <h4>Tesztesetek nem megfelelő dokumentálása</h4>
+                            <p>
+							Jelentős költségmegtakarító tényezőnek tartják a tesztelést támogató szoftverek „kispórolását” a projektekből. A különböző táblázatkezelők csak kisszámú feladat dokumentálására alkalmazhatóak és korlátozottan. Mégis gyakran használják komplex feladatok, például tesztesetek tárolására is. Ez a gyakorlatban nem ér többet, mint egy halom papírfecni, amire félmondatokat firkálunk.
+							</p>
+							<p><b>Javaslat</b></p>
+							<p>
+							A tesztesetek létrehozására célszoftvert kell alkalmazni mindentesztelés esetén. Ez az újrafelhasználást és a kiértékeléseket is lehetővé teszi, ill. elősegíti a hosszú távú, „újrahasznosítható” tesztelési munkát.
+							</p>
+					    </div>
+						
+						<div id="eredmeny_dok_hianya">
+                            <h4>Teszteredmények dokumentálásának hiánya</h4>
+                            <p>
+							A tesztek eredményeiről gyakorta legfeljebb e-maileket szokás írni, de ezek további rögzítése elmarad. Sok információ „szájhagyomány” útján terjed.
+							</p>
+							<p><b>Javaslat</b></p>
+							<p>
+							A tesztek eredményei nem csak egy adott fejlesztési periódusban értékesek, hanem később is. Számos esetben a teszteredmények csak hosszabb távon mutatnak ki bizonyos hibákat a szoftverekben.
+							</p>
+					    </div>
+						
+						<div id="kiertekeles_hianyzik">
+                            <h4>Teszteredmények kiértékelése hiányzik</h4>
+                            <p>
+							A teszteredmények kiértékelésével nem foglalkozik senki, összefüggéseket senki nem von le, emiatt (is) gyakori, hogy bizonyos típusú hibák mindig visszatérnek a szoftver tesztelése során.
+							</p>
+							<p><b>Javaslat</b></p>
+							<p>
+							A tesztek eredményei összefüggnek, számszerűsíthetőek és időben ábrázolva további, mélyebb következtetések levonására adnak lehetőséget. Minden lehetséges eszközzel, de inkább célszoftverrel érdemes elemezni a teszteredményeket. Egy ilyen rendszer többnyire megegyezik a tesztek rögzítésére használt szoftverrel.
+							</p>
+					    </div>
+						
+						<div id="feladatok_delegalasa">
+                            <h4>Feladatok delegálása</h4>
+                            <p>
+							Hirtelen felmerülő határidők, ismeretlen funkciók tesztelésének azonnali igénye, „tegnapi” határidős feladatok felbukkanása.
+							</p>
+							<p><b>Javaslat</b></p>
+							<p>
+							Nemcsak a tesztelés során, hanem általában is megvan a módja a feladatok kiosztásának. A vezetőknek tisztában kell lenniük legalább 5 alapfeltétellel, melyek a számonkérés alapját képezhetik. Ezek: <b>ki, mit, milyen eszközökkel, hogyan, milyen határidővel</b> végez el. Számonkérésnek csak abban az esetben van értelme, ha ezeket a kérdéseket tisztáztuk és megbeszéltük a feladat végrehajtásával megbízott munkatárssal, esetünkben a tesztelőkkel. A tesztelő felelőssége, hogy megfelelő információk hiányában ne vállaljon el hiányosan megfogalmazott feladatokat.
+							</p>
+					    </div>
+						
+<h2 id="chapter9" class="chaptertitle">9. Tesztelői kisszótár</h2>
+						
+						<div id="agilis_fejlesztes1">
+                            <h4>Agilis fejlesztés</h4>
+                            <p>
+Agilis fejlesztés: a projektben dolgozó csapatok együttműködésére építő fejlesztési módszertan.
+							</p>
+					    </div>	
+
+						<div id="atadasi_teszt1">
+                            <h4>Átadási teszt</h4>
+                            <p>
+Átadási teszt: általában ügyféloldalon végrehajtott teszt, melynek célja, hogy az ügyfél megbizonyosodjon arról, hogy azt kapja, amit megrendelt.
+							</p>
+					       </div>	
+
+						<div id="debugging1">
+                            <h4>Debugging</h4>
+                            <p>
+Debugging: a szoftver felügyelt módban történő futtatása, részletes elemzési lehetőségekkel. Fejlesztőeszközökben elérhető lehetőség.
+							</p>
+					       </div>
+						   
+						   	<div id="dinamikus_teszteles1">
+                            <h4>Dinamikus tesztelés (dynamic testing)</h4>
+                            <p>
+Dinamikus tesztelés (dynamic testing): a szoftver futásidejű tesztelése.
+							</p>
+					       </div>	
+
+						   	<div id="elfogadasi_teszt1">
+                            <h4>Elfogadási teszt</h4>
+                            <p>
+Elfogadási teszt: a szoftver átadását megelőző átfogó teszt, melynek során a szoftverrel szemben támasztott kritériumok kerülnek tesztelésre.
+							</p>
+					       </div>	
+						   
+						   	<div id="elvart_eredmenyek1">
+                            <h4>Elvárt eredmények (expected result)</h4>
+                            <p>
+Elvárt eredmények (expected result): a teszt sikeres kimenetelének leírása.
+							</p>
+					       </div>	
+						   
+						   	<div id="feher_doboz_teszteles1">
+                            <h4>Fehér doboz tesztelés (white box testing)</h4>
+                            <p>
+Fehér doboz tesztelés (white box testing): a szoftver kódját figyelembe vevő, vagy egyenesen azt célzó tesztelés.
+							</p>
+					       </div>	
+						   
+						   	<div id="fekete_doboz_teszteles1">
+                            <h4>Fekete doboz tesztelés (black box testing)</h4>
+                            <p>
+Fekete doboz tesztelés (black box testing): egy adott szoftver belsőszerkezetét nem figyelembe vevő tesztelés.
+							</p>
+					       </div>	
+						   
+						   	<div id="felfedezeses_teszteles1">
+                            <h4>Felfedezéses tesztelés (exploratory testing)</h4>
+                            <p>
+Felfedezéses tesztelés (exploratory testing): ad hoc jellegű, nem folyamat központú tesztelés.
+							</p>
+					       </div>
+						   
+						   	<div id="folyamatleirasok1">
+                            <h4>Felhasználási folyamatleírások (user story)</h4>
+                            <p>
+Felhasználási folyamatleírások (user story): egy adott üzleti folyamat felhasználói szemszögből történő leírása.
+							</p>
+					       </div>
+						   
+						   	<div id="funkcionalis_specifikacio1">
+                            <h4>Funkcionális specifikáció</h4>
+                            <p>
+Funkcionális specifikáció: a szoftver egyes funkcióinak részletes leírása, beleértve a működés feltételeinek megadását is.
+							</p>
+					       </div>
+						   
+						   
+						   	<div id="funkcionalis_teszt1">
+						    <h4>Funkcionális teszt</h4>
+                            <p>
+Funkcionális teszt: egyes szoftverfunkciók működésének tesztje.
+							</p>
+					       </div>
+						   
+						   	<div id="komponensteszt1">
+						    <h4>Komponensteszt</h4>
+                            <p>
+Komponensteszt: szoftverkomponensek tesztje.
+							</p>
+					       </div>
+						   
+						   	<div id="hiba1">
+						    <h4>Hiba (bug, fault, defect)</h4>
+                            <p>
+Hiba (bug, fault, defect): konkrét, kimutatható hibajelenség.
+							</p>
+					       </div>
+						   
+						   <div id="hiba_ervenyessege1">
+						    <h4>Hiba érvényessége</h4>
+                            <p>
+Hiba érvényessége: a hiba mivoltának meghatározása.
+							</p>
+					       </div>
+						   
+						   <div id="hibajelentes1">
+						    <h4>Hibajelentés (bug report)</h4>
+                            <p>
+Hibajelentés (bug report): teszt során talált hiba technikai leírása.
+							</p>
+					       </div>
+						   
+						   <div id="hibas_mukodes1">
+						    <h4>Hibás működés (failure)</h4>
+                            <p>
+Hibás működés (failure): hibajelenségből eredő, az elvárttól eltérőműködés.
+							</p>
+					       </div>
+						   
+						   	<div id="hibazas1">
+						    <h4>Hibázás (error, mistake)</h4>
+                            <p>
+Hibázás (error, mistake): a hiba létrehozásának folyamata.
+							</p>
+					       </div>
+						   
+						   <div id="hotfix1">
+						    <h4>Hotfix</h4>
+                            <p>
+Hotfix: gyorsjavítás száma.
+							</p>
+					       </div>
+						   
+						   <div id="integracios_teszt1">
+						    <h4>Integrációs teszt</h4>
+                            <p>
+Integrációs teszt: szoftverkomponensek együttműködésének tesztje.
+							</p>
+					       </div>
+						   
+							<div id="kick-off_meeting1">
+						    <h4>Kick-off meeting</h4>
+                            <p>
+Kick-off meeting: projektindításkor megtartott megbeszélés.
+							</p>
+					       </div>	
+						   
+							<div id="minoseg1">
+						    <h4>Minőség</h4>
+                            <p>
+Minőség: egy adott (szoftver) termék tulajdonságainak összessége, mely azt jellemzi.
+							</p>
+					       </div>
+						   
+						   <div id="minosegbiztositas1">
+						    <h4>Minőségbiztosítás</h4>
+                            <p>
+Minőségbiztosítás (quality assurance, QA): olyan tevékenységek összessége, melyek a fejlesztett szoftver tervezett minőségét hivatottak biztosítani.
+							</p>
+					       </div>	
+						   
+						   <div id="negativ_teszteset1">
+						    <h4>Negatív teszteset</h4>
+                            <p>
+Negatív teszteset (negative test case): szoftverek hibakezelésének, hibatűrésének tesztelésére összeállított teszteset.
+							</p>
+					       </div>	
+						   
+						   <div id="nem_funkcionalis_teszt1">
+						    <h4>Nem-funkcionális teszt</h4>
+                            <p>
+Nem-funkcionális teszt: a szoftver járulékos, nem egyes funkciókhoz köthető tulajdonságainak tesztje.
+							</p>
+					       </div>	
+						   
+						   <div id="prioritas1">
+						    <h4>Prioritás</h4>
+                            <p>
+Prioritás: fontosági sorrend.
+							</p>
+					       </div>	
+						   
+						   <div id="priorizalas1">
+						    <h4>Priorizálás</h4>
+                            <p>
+Priorizálás: fontossági sorrend felállítása.
+							</p>
+					       </div>	
+						   
+						   <div id="product_owner1">
+						    <h4>Product owner („terméktulajdonos”)</h4>
+                            <p>
+Product owner („terméktulajdonos”): vezető a projektben, aki egy adott megoldás (program modul, vagy teljes szoftver) kifejlesztéséért felel.
+							</p>
+					       </div>	
+						   
+						   <div id="projektkoordinator1">
+						    <h4>Projektkoordinátor</h4>
+                            <p>
+Projektkoordinátor: a projekt résztvevői közötti információ áramlásért, a felmerülő általános igények jelzéséért felelős személy.
+							</p>
+					       </div>	
+						   
+						   <div id="projektmenedzser1">
+						    <h4>Projektmenedzser</h4>
+                            <p>
+Projektmenedzser: a projekt sikeres lebonyolításáért felelős vezető.
+							</p>
+					       </div>	
+						   
+						   <div id="regresszios_teszt1">
+						    <h4>Regressziós teszt</h4>
+                            <p>
+Regressziós teszt: annak tesztje, hogy új funkció nem okozott-e hibát már korábban is elérhető funkciókban.
+							</p>
+					       </div>	
+						   
+						   <div id="release1">
+						    <h4>Release</h4>
+                            <p>
+Release: szoftverkiadás száma.
+							</p>
+					       </div>	
+						   
+						   <div id="rendszerteszt1">
+						    <h4>Rendszerteszt</h4>
+                            <p>
+Rendszerteszt: egy rendszer (hardver és szoftver) teljes funkcionalitását célzó teszt.
+							</p>
+					       </div>	
+						   
+						   <div id="review1">
+						    <h4>Review</h4>
+                            <p>
+Review: felülvizsgálat, melynek során programozók, vagy tesztelők egymás munkáját ellenőrzik.
+							</p>
+					       </div>	
+						   
+						   <div id="SCRUM1">
+						    <h4>SCRUM</h4>
+SCRUM: az agilis módszertanokhoz tartozó fejlesztési mód, mely erősen csapatközpontú.
+							</p>
+					       </div>	
+						   
+						   <div id="scrum_master1">
+						    <h4>Scrum Master</h4>
+                            <p>
+Scrum master: a SCRUM csapat működéséért felelő szervező, aki a fejlesztők és a tesztelők munkáját is támogatja.
+							</p>
+					       </div>	
+						   
+						   <div id="sprint1">
+						    <h4>Sprint</h4>
+                            <p>
+Sprint: fejlesztési ciklus a SCRUM-on belül, tipikusan egy hetet ölel fel.
+							</p>
+					       </div>	
+						   
+						   <div id="statikus_teszteles1">
+						    <h4>Statikus tesztelés (static testing):</h4>
+                            <p>
+Statikus tesztelés (static testing): olyan tesztelési technika, melynek során a tesztelt szoftver nem fut (forráskód-elemzés, dokumentáció ellenőrzése stb.).
+							</p>
+					       </div>	
+						   
+						   <div id="strukturalis_teszt1">
+						    <h4>Strukturális teszt</h4>
+                            <p>
+Strukturális teszt: lásd fehérdoboz tesztelés.
+							</p>
+					       </div>	
+						   
+						   <div id="minoseg1">
+						    <h4>Minőség</h4>
+                            <p>
+Minőség: egy adott (szoftver) termék tulajdonságainak összessége, mely azt jellemzi.
+							</p>
+					       </div>	
+						   
+						   <div id="sulyossag1">
+						    <h4>Súlyosság</h4>
+                            <p>
+Súlyosság: hiba kihatásának jelzésére szolgál.
+							</p>
+					       </div>	
+						   
+						   <div id="szurke_doboz_teszteles1">
+						    <h4>Szürke-doboz tesztelés (grey box testing)</h4>
+                            <p>
+Szürke-doboz tesztelés (grey box testing): egy adott szoftver belsőszerkezetét figyelembe vevő tesztelés.
+							</p>
+					       </div>	
+						   
+						   <div id="teszt_dizajn1">
+						    <h4>Teszt dizájn (test design)</h4>
+                            <p>
+Teszt dizájn (test design): konkrét teszt, teszteset előkészítését célzó tevékenység.
+							</p>
+					       </div>	
+						   
+						   <div id="teszteset1">
+						    <h4>Teszteset (test case)</h4>
+                            <p>
+Teszteset (test case): logikailag összetartozó tesztlépések összessége, egysége.
+							</p>
+					       </div>	
+						   
+						   <div id="tesztfuttatas1">
+						    <h4>Tesztfuttatás (test execution)</h4>
+                            <p>
+Tesztfuttatás (test execution): logikailag összetartozó tesztlépések végrehajtása.
+							</p>
+					       </div>	
+						   
+						   <div id="tesztkiertekeles1">
+						    <h4>Tesztkiértékelés (test evaluation</h4>
+                            <p>
+Tesztkiértékelés (test evaluation): teszt végeredményének meghatározása.
+							</p>
+					       </div>	
+						   
+						   <div id="tesztkoordinator1">
+						    <h4>Tesztkoordinátor, tesztvezető</h4>
+                            <p>
+Tesztkoordinátor, tesztvezető: a tesztelés napi szintű, operatív végrehajtásáért felelős személy, egy, esetleg több csapaton belül.
+							</p>
+					       </div>	
+						   
+						   <div id="tesztkornyezet1">
+						    <h4>Tesztkörnyezet (test environment)</h4>
+                            <p>
+Tesztkörnyezet (test environment): valós rendszert szimuláló infrastruktúra.
+							</p>
+					       </div>	
+						   
+						   <div id="tesztlepes1">
+						    <h4>Tesztlépés (test step)</h4>
+                            <p>
+Tesztlépés (test step): a teszteset elemi végrehajtási egysége, mely tartalmazza az elvárt eredmény leírását is.
+							</p>
+					       </div>	
+						   
+						   <div id="tesztmenedzser1">
+						    <h4>Tesztmenedzser</h4>
+Tesztmenedzser: a tesztelés zökkenőmentes lebonyolításáért felelős vezető.
+							</p>
+					       </div>	
+						   
+						   <div id="tesztriport1">
+<h4>Tesztriport</h4>
+<p>
+Tesztriport (test report): teszt kimenetlének összefoglalása, számszerűsített adatokkal alátámasztva.
+							</p>
+					       </div>	
+						   
+						   <div id="teszt_forgatokonyv1">
+						    <h4>Teszt forgatókönyv (test scenario)</h4>
+                            <p>
+Teszt forgatókönyv (test scenario): üzleti követelményekből levezetett összefoglaló leírások.
+							</p>
+					       </div>	
+						   
+						   <div id="teszt_statusz1">
+						    <h4>Teszt státusz (test status)</h4>
+                            <p>
+Teszt státusz (test status): a teszt végkimenetelének, eredményének megnevezése.
+							</p>
+					       </div>	
+						   
+						   <div id="tesztstrategia1">
+						    <h4>Tesztstratégia</h4>
+                            <p>
+Tesztstratégia: a teszt céljait, módszereit, feltételeit, a felelősségköröket meghatározó dokumentum.
+							</p>
+					       </div>	
+						   
+						   <div id="teszt_terv1">
+						    <h4>Teszt terv (test plan)</h4>
+                            <p>
+Teszt terv (test plan): teszt végrehajtásának írásos vázlata.
+							</p>
+					       </div>	
+						   
+						   <div id="TDD">
+						    <h4>Tesztvezérelt fejlesztés</h4>
+                            <p>
+Teszt-vezérelt fejlesztés: olyan programozási módszer, melynek során a programkódot eleve a későbbi tesztelhetőség szempontjait figyelembe véve készítik el.
+							</p>
+							<p>
+A tesztvezérelt fejlesztés (Test-driven development, TDD) egy szoftverfejlesztési folyamat, ami egy nagyon rövid fejlesztési ciklus ismételgetésén alapul, tehát a követelményeket speciális teszt esetekként fogalmazzuk meg, a kódot pedig ehhez mérten írjuk meg, így az át fog menni a teszten. Ez tökéletes ellentéte a hagyományos szoftverfejlesztésnek, ami megengedi olyan kódrészletek meglétét is, amelyek nem felelnek meg teljesen a követelményeknek. A TDD összefüggésben áll az extrém programozás koncepciójával, miszerint először tesztelünk és ha minél többet tesztelünk, annál több hibát tudunk kiküszöbölni a kódban. Az utóbbi 1999-ben indult útjára, a TDD-nek pedig az idő előrehaladtával kialakultak sajátos megoldásai. Rengeteg programozó alkalmazza ezt a technikát arra is, hogy egyszerűbbé tegyék az olyan legacy kódok fejlesztését, hibakövetését, amik régebbi eszközök felhasználásával készültek.
+							</p>
+					       </div>	
+						   
+						   <div id="zaro_riport1">
+						    <h4>Teszt záró riport (test exit report)</h4>
+                            <p>
+Teszt záró riport (test exit report): általában több teszt eredményeit összefoglaló és kiértékelő, nagyobb lélegzetvételű dokumentum.
+							</p>
+					       </div>	
+						   
+						   <div id="uzleti_elemzo1">
+						    <h4>Üzleti elemző (business analyst)</h4>
+                            <p>
+Üzleti elemző (business analyst): üzleti folyamatok technikai szintre történő lefordítását segítő szakember.
+							</p>
+					       </div>	
+						   
+						   <div id="uzleti_folyamat1">
+						    <h4>Üzleti folyamat (business process)</h4>
+                            <p>
+Üzleti folyamat (business process): egy adott üzleti cél eléréséhez szükséges tevékenységsorozat.
+							</p>
+					       </div>	
+						   
+						   <div id="uzl_kovetelmeny1">
+						    <h4>Üzleti követelmény (business requirement)</h4>
+                            <p>
+Üzleti követelmény (business requirement): üzleti folyamatok alkalmazásához, végrehajtásához szükséges előfeltételek.
+							</p>
+					       </div>	
+						   
+						   <div id="v-modell1">
+						    <h4>V-modell</h4>
+                            <p>
+V-modell: fejlesztési modell, melynek egyes fázisai lineárisan, szekvenciálisan követik egymást.
+							</p>
+					       </div>	
+						   
+						   <div id="verzio1">
+						    <h4>Verzió</h4>
+                            <p>
+Verzió: egy szoftver időben különböző változatainak jelzésére szolgáló szám.
+							</p>
+					       </div>
+						   
+						   	<div id="vezeto_fejleszto1">
+						    <h4>Vezető fejlesztő</h4>
+                            <p>
+Vezető fejlesztő: egy csapaton, vagy projekten belül a legtöbb tapasztalattal rendelkező programozó.
+							</p>
+					       </div>
+						   
+						   	<div id="vezeto_tesztelo1">
+						    <h4>Vezető tesztelő (test lead)</h4>
+                            <p>
+Vezető tesztelő (test lead): nagy tesztelői- és projekt tapasztalattal rendelkező tesztelő, aki aktívan részt vesz a mindenkori tesztstratégia kialakításában és a tesztek levezénylésében.
+							</p>
+					       </div>
+						   <div id="platformok">
+                            <h4><b>Tesztelés különböző platformokon</b></h4>
+					       </div>	
+
+						<div id="asztali">
+                            <h4>Tesztelés asztali számítógépeken</h4>
+                            <p>
+							Az asztali számítógépes környezetben végzett tesztelés a leginkább elterjedt, mivel ilyen számítógépekkel nagyon sokan rendelkeznek otthon is. Ezek készség szintű használata, ismerete ezért nem okoz gondot egy átlagos tesztelőnek sem. A kihívást itt elsősorban a fejlesztéshez használt technológiák dömpingjében történő eligazodás jelenti. <u>A trend egyértelműen a böngészős alkalmazások terjedése, a lokálisan telepített, ún. standalone alkalmazások száma csökken</u> bár eltűnni nem fognak, hanem egyre inkább speciálisabb területeken használják őket.
+							</p>
+					       </div>
+						   
+				<h2 id="chapter10" class="chaptertitle">10. Tesztelés Java környezetben</h2>
+						
+						<div id="JUnit">
+                            <h4>JUnit</h4>
+                            <p>
+A <u>JUnit egy egységteszt-keretrendszer</u> Java programozási nyelvhez. A tesztvezérelt fejlesztés (TDD) szabályai szerint ez annyit tesz, hogy a kód írásával párhuzamosan fejlesztjük a kódot tesztelő osztályokat is (ezek az egységtesztek). Ezeken egységtesztek karbantartására, csoportos futtatására szolgál ez a keretrendszer. A JUnit-teszteket gyakran a build folyamat részeként szokták beépíteni. Pl. napi build-ek esetén ezek a tesztek is lefutnak. A release akkor hibátlan, ha az összes teszt hibátlanul lefut. A JUnit a egységteszt-keretrendszerek családjába tartozik, melyet összességében xUnit-nak hívunk. Egy tetszőleges nevű tesztosztályban a teszt metódusokat meg kell jelölni a @Test annotációval. Lehetőség van definiálni olyan metódust, amely a teszt előtt (ill. utána) hajtódik végre. Ezeket @Before ill. @After annotációval kell megjelölni. A @BeforeClass annotációval megjelölt metódus az első teszt metódus meghívása előtt lefut, ill. az utolsó teszt metódus végrehajtása után az @AfterClass annotációval megjelölt metódus fut le.Az @Ignore annotációval megjelölt teszt nem fut le a teszt osztály futtatása során.
+							</p>
+					    </div>	
+
+						<div id="mock">
+                            <h4>Mock objektum</h4>
+                            <p>
+Az objektumorientált programozásban <u>a mock objektumok más objektumok viselkedését utánozzák, de leegyszerűsítve</u>. A minta a helyettes egy tesztelésre használt típusának tekinthető. Az autók tesztelésekor is törésteszt bábukat használnak emberek helyett. A mock objektumok alkalmazását mókolásnak is nevezik. Az egységtesztek egy fázisában a mock objektumok összetett, bonyolult viselkedéssel bíró objektumokat helyettesítenek olyan esetekben, amikor nem praktikus vagy lehetetlen az eredeti objektumokat használni. A tesztvezérelt fejlesztésben (TDD) mock objektumokat használnak a program írása közben, amikor a célobjektum még nincs megírva. A mock objektumok megvalósítják ugyanazt az interfészt, mint az eredeti, így tesztelhetők olyan funkciók is, amelyek komplex objektumokkal dolgoznának. Így a programozók koncentrálhatnak a rendszer viselkedésére, amit így a függőségeitől izoláltan tudnak kezelni. Így vizsgálható önmagában egy algoritmus, ami összetett objektumokkal működik. Amellett, hogy lehetővé teszi az egyes egységek önálló tesztelését, még fel is gyorsítja a folyamatot. A modern alkalmazások akár több száz egységet, modult is tartalmaznak. Ha ezek közül sok adatbázissal, webszolgáltatásokkal, más hálózati rendszerekkel vagy külső folyamatokkal kommunikál, akkor a valódi objektumokkal végzett tesztelés jelentősen lelassítja a folyamatot. Ez hanyagsághoz vezethet, és rossz szokásokat alakíthat ki. A teszt egy későbbi szakaszában a mock objektumokat igaziakra kell cserélni, hogy teszteljék a vég-vég funkcionalitást. Ezek azonban már nem egységtesztek, hanem integrációs tesztek. A mock objektumok, mint helyettesek megvalósítják a valódi objektum interfészét, így a kliens változtatás nélkül hívhatja a mock objektumot. Több keretrendszer is lehetővé teszi annak specifikálását, hogy a kliens milyen sorrendben és hányszor hívja a metódusokat. Az összetett objektum, mint egy hálózati socket viselkedése utánozható egy mock objektummal, így a programozó felismerheti, hogy az objektum az állapotának megfelelően válaszol-e.
+							</p>
+					       </div>	
+				
+							<br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+							<br>
+							<br>
+							<br>
+							<br>
+							<br>
+							<br>
+							<br>
+                        </div>
+                </td>
+
+            </tr>
+        </table>
+        <div style="margin-left: 41px; margin-top:10px;">
+            <a href="#oldal_teteje">Vissza az oldal tetejére</a>
+        </div>
+        <hr>
+        </div>
+        <!-- <script src="/js/elmelet.js"></script> -->
+</body>
+
+</html>
